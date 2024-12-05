@@ -21,5 +21,5 @@ public class PageController {
     public String myTeam() { return "myTeamList"; }
 
     @GetMapping("/registerMember-page") // 모집 페이지
-    public String registerMember() { return "registerMemberPage"; }
+    public String registerMember() { return "registerMemberForm"; }
 }

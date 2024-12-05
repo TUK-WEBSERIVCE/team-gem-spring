@@ -56,7 +56,7 @@
         h2 {
             text-align: center;
             margin-bottom: 20px;
-            color: #007bff;
+            color: #0082CC;
         }
 
         form {
@@ -122,19 +122,13 @@
             margin: 0;
             padding: 0;
         }
-        
-        * {
-		    margin: 0;
-		    padding: 0;
-		    box-sizing: border-box; /* 모든 요소에 적용 */
-		}
     </style>
 </head>
 <body>
     <header>
-        <div class="page-title"><div class="" style="color: #0082CC;">TUK&nbsp;</div>Team Gem</div>
+        <a class="page-title" href="/"><div class="" style="color: #0082CC;">TUK&nbsp;</div>Team Gem</a>
         <div class="account-container">
-            <a href="#">로그인</a>
+            <a href="/login-page">로그인</a>
             <span class="divider">|</span>
             <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
         </div>
@@ -144,7 +138,7 @@
         <h2>회원가입</h2>
             <form method="post" action="/member/register">
                 <label for="nickname">닉네임</label>
-                <input type="text" id="nickname" name="nickname" placeholder="이름을 입력하세요" required>
+                <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요" required>
 
                 <label for="loginId">아이디</label>
                 <input type="text" id="loginId" name="loginId" placeholder="아이디를 입력하세요" required>

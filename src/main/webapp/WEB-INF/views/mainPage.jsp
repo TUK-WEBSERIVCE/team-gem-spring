@@ -146,7 +146,7 @@
 </head>
 <body>
 	<header>
-		<div class="page-title"><div class="" style="color: #0082CC;">TUK&nbsp;</div>Team Gem</div>
+		<a class="page-title" href="/"><div class="" style="color: #0082CC;">TUK&nbsp;</div>Team Gem</a>
 		<div class="account-container">
 	        <a href="/login-page">로그인</a>
 	        <span class="divider">|</span>
