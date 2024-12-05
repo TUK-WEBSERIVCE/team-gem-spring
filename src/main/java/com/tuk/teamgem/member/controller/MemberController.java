@@ -31,8 +31,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login(LoginRequest loginRequest, HttpServletRequest request,
-        HttpServletResponse response){
+    public String login(LoginRequest loginRequest, HttpServletRequest request){
         LoginResponse loginResponse = memberService.login(loginRequest);
         HttpSession session = request.getSession();
         session.setAttribute("id",loginResponse.memberId());
