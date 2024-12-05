@@ -6,8 +6,11 @@ import com.tuk.teamgem.member.dto.MemberRegisterResponse;
 import com.tuk.teamgem.member.dto.RegisterRequest;
 import com.tuk.teamgem.member.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,9 +31,12 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public LoginResponse login(@RequestBody LoginRequest loginRequest, HttpServletRequest request){
-        return memberService.login(loginRequest);
-//        HttpSession session = request.getSession();
+    public String login(LoginRequest loginRequest, HttpServletRequest request,
+        HttpServletResponse response){
+        LoginResponse loginResponse = memberService.login(loginRequest);
+        HttpSession session = request.getSession();
+        session.setAttribute("id",loginResponse.memberId());
+        return "mainPage";
     }
 
     @GetMapping("/register-form")
