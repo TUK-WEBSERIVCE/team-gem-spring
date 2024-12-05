@@ -149,7 +149,7 @@
 	                </tr>
 	            </thead>
 	            <tbody>
-	                <tr>
+	                <tr><!-- 샘플 데이터 -->
 	                    <td>1</td>
 	                    <td><a href="#">프로젝트 A</a></td>
 	                    <td>2/3</td>

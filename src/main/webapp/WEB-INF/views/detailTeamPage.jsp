@@ -176,7 +176,7 @@
     	<hr>
     	<div class="table-border">
         	<table>
-	            <tbody>
+	            <tbody><!-- 샘플 데이터 -->
 	                <tr>
 	                    <th class="th-style">제목</th>
 	                    <td>프로젝트 C</td>
@@ -200,7 +200,7 @@
 	            </tbody>
 	        </table>
         </div>
-        <div class="project-description">
+        <div class="project-description"><!-- 샘플 데이터 -->
             <strong>프로젝트 설명:</strong> <br>
             백엔드 개발자 모집중입니다.
         </div>

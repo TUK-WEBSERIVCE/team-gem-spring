@@ -147,7 +147,7 @@
 	<header>
 		<div class="page-title"><div class="" style="color: #0082CC;">TUK&nbsp;</div>Team Gem</div>
 		<div class="account-container">
-	        <a href="#">로그인</a>
+	        <a href="/join.jsp">로그인</a>
 	        <span class="divider">|</span>
 	        <a href="#" style="margin-right: 30px;">회원가입</a>
         </div>
@@ -169,7 +169,7 @@
 	                </tr>
 	            </thead>
 	            <tbody>
-	                <tr>
+	                <tr><!-- 샘플 데이터 -->
 	                    <td>3</td>
 	                    <td><a href="#">프로젝트 C</a></td>
 	                    <td>0/5</td>
@@ -177,7 +177,7 @@
 	                    <td class="status-open">모집중</td>
 	                    <td>2024.11.12 오후 11:59</td>
 	                </tr>
-	                <tr>
+	                <tr><!-- 샘플 데이터 -->
 	                    <td>2</td>
 	                    <td><a href="#">프로젝트 B</a></td>
 	                    <td>4/4</td>
@@ -185,7 +185,7 @@
 	                    <td class="status-closed">종료</td>
 	                    <td>2024.11.06 오전 2:59</td>
 	                </tr>
-	                <tr>
+	                <tr><!-- 샘플 데이터 -->
 	                    <td>1</td>
 	                    <td><a href="#">프로젝트 A</a></td>
 	                    <td>2/3</td>

@@ -189,15 +189,13 @@
     </header>
 
     <div class="container">
-        <!-- 프로젝트 제목 -->
-        <div class="main-title">프로젝트 이름</div>
+        <div class="main-title">프로젝트 이름</div><!-- 샘플 데이터 -->
         <hr>
-        
-        <!-- 지원자 목록 -->
+
         <div>
             <h3>지원자 목록</h3>
             <div class="applicant-list">
-                <div class="applicant-item">
+                <div class="applicant-item"><!-- 샘플 데이터 -->
                     <span>Hong Gil-dong</span>
                     <div class="applicant-buttons">
                     	<button class="detail-btn">자세히보기</button>
@@ -205,7 +203,7 @@
                         <button class="reject-btn">거절</button>
                     </div>
                 </div>
-                <div class="applicant-item">
+                <div class="applicant-item"><!-- 샘플 데이터 -->
                     <span>Son Heung-min</span>
                     <div class="applicant-buttons">
                     	<button class="detail-btn">자세히보기</button>
@@ -213,7 +211,7 @@
                         <button class="reject-btn">거절</button>
                     </div>
                 </div>
-                <div class="applicant-item">
+                <div class="applicant-item"><!-- 샘플 데이터 -->
                     <span>Park Ji-sung</span>
                     <div class="applicant-buttons">
                     	<button class="detail-btn">자세히보기</button>
@@ -228,12 +226,12 @@
         <div class="comment-section">
             <h3>소통 창구</h3>
             <div class="comment-box">
-                <div class="comment-item">
+                <div class="comment-item"><!-- 샘플 데이터 -->
                 	<span class="comment-at">2024-11-21 16:55</span>
 			        <span class="nickname">Choi:</span>
 			        <span class="message">안녕하세요!</span>
                 </div>
-                <div class="comment-item">
+                <div class="comment-item"><!-- 샘플 데이터 -->
                 	<span class="comment-at">2024-11-21 16:58</span>
                 	<span class="nickname">Song:</span>
 			        <span class="message">반갑습니다.</span>
