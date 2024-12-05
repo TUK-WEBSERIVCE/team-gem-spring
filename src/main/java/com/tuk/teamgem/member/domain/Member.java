@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,4 +21,11 @@ public class Member {
     private String loginId;
     private String password;
     private String nickname;
+
+    @Builder
+    public Member(final String loginId, final String password, final String nickname) {
+        this.loginId = loginId;
+        this.password = password;
+        this.nickname = nickname;
+    }
 }
