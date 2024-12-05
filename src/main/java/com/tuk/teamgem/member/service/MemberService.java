@@ -31,7 +31,6 @@ public class MemberService {
         Member member = memberRepository.findByLoginIdAndPassword(request.loginId(),
                 request.password())
             .orElseThrow(() -> new IllegalStateException("아이디와 비밀번호가 일치하지 않습니다."));
-        HttpServletRequest
         return new LoginResponse(member.getId());
     }
 }
