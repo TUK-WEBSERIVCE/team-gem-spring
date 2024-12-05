@@ -141,18 +141,15 @@
     </header>
 
     <div class="container">
-        <h2>회원가입</h2>
-            <form method="post" action="/member/register">
-                <label for="nickname">닉네임</label>
-                <input type="text" id="nickname" name="nickname" placeholder="이름을 입력하세요" required>
-
+        <h2>로그인</h2>
+            <form method="post" action="/member/login">
                 <label for="loginId">아이디</label>
                 <input type="text" id="loginId" name="loginId" placeholder="아이디를 입력하세요" required>
 
                 <label for="password">비밀번호</label>
                 <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
 
-                <input type="submit" value="회원가입">
+                <input type="submit" value="로그인">
             </form>
     </div>
 
