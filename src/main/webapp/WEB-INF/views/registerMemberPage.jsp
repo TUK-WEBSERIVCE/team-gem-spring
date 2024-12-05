@@ -113,34 +113,6 @@
     <div class="main-title">모집하기</div>
     <hr>
 
-    <div>
-        <div class="applicant-list">
-            <div class="applicant-item"><!-- 샘플 데이터 -->
-                <span>Hong Gil-dong</span>
-                <div class="applicant-buttons">
-                    <button class="detail-btn">자세히보기</button>
-                    <button class="approve-btn">승인</button>
-                    <button class="reject-btn">거절</button>
-                </div>
-            </div>
-            <div class="applicant-item"><!-- 샘플 데이터 -->
-                <span>Son Heung-min</span>
-                <div class="applicant-buttons">
-                    <button class="detail-btn">자세히보기</button>
-                    <button class="approve-btn">승인</button>
-                    <button class="reject-btn">거절</button>
-                </div>
-            </div>
-            <div class="applicant-item"><!-- 샘플 데이터 -->
-                <span>Park Ji-sung</span>
-                <div class="applicant-buttons">
-                    <button class="detail-btn">자세히보기</button>
-                    <button class="approve-btn">승인</button>
-                    <button class="reject-btn">거절</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
 <div class="button-container">

@@ -57,6 +57,40 @@
 
         }
 
+        .apply-list {
+            background-color: #D6F4FF;
+            padding: 10px;
+            border-radius: 5px;
+            align-items: center; /* 상하 중앙 정렬 */
+        }
+
+        .apply-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px;
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .apply-item span {
+            font-size: 1.5em;
+        }
+
+        .apply-item .waitingStatus {
+            font-size: 1.2em;
+            color: black;
+        }
+        .apply-item .okStatus {
+            font-size: 1.2em;
+            color: green;
+        }
+        .apply-item .noStatus {
+            font-size: 1.2em;
+            color: red;
+        }
+
         .divider {  /* 로그인, 회원가입 구분자를 위한 클래스 */
             color: white;
             margin-left: 10px;
@@ -92,6 +126,24 @@
 <div class="container">
     <div class="main-title">지원 현황</div>
     <hr>
+
+    <div>
+        <div class="apply-list">
+            <div class="apply-item"><!-- 샘플 데이터 -->
+                <span>프로젝트 C</span>
+                <div class="waitingStatus">대기</div>
+            </div>
+            <div class="apply-item"><!-- 샘플 데이터 -->
+                <span>프로젝트 B</span>
+                <div class="okStatus">승인</div>
+            </div>
+            <div class="apply-item"><!-- 샘플 데이터 -->
+                <span>프로젝트 A</span>
+                <div class="noStatus">거절</div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- 하단 네비게이션 바 -->

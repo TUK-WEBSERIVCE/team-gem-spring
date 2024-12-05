@@ -15,8 +15,11 @@ public class PageController {
     public String login(){ return "login";}
 
     @GetMapping("/apply-page") // 지원현황
-    public String apply() { return "applyStatus"; }
+    public String apply() { return "applyStatusPage"; }
 
-    @GetMapping("/myTeam-page") // 내팀
+    @GetMapping("/myTeam-page") // 내 팀
     public String myTeam() { return "myTeamList"; }
+
+    @GetMapping("/registerMember-page") // 모집 페이지
+    public String registerMember() { return "registerMemberPage"; }
 }

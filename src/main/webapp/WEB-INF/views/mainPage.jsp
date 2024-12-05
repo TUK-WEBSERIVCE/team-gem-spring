@@ -199,7 +199,7 @@
         </div>
     </div>
     <div class="button-container">
-        <button>모집하기</button>
+        <button onclick="location.href='/registerMember-page'">모집하기</button>
     </div>
     
     <!-- 하단 네비게이션 바 -->

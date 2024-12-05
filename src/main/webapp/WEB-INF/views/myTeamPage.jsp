@@ -72,7 +72,6 @@
         margin: 5px;
         padding: 5px 0;
         border-bottom: 1px solid #ddd;
-        
     }
     
     .applicant-item span {
