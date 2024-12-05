@@ -134,6 +134,7 @@
             position: fixed;
             bottom: 0;
         }
+
         nav ul {  /* nav 태그 내 ul 태그 */
             list-style-type: none;
             display: flex;
@@ -147,9 +148,9 @@
 	<header>
 		<div class="page-title"><div class="" style="color: #0082CC;">TUK&nbsp;</div>Team Gem</div>
 		<div class="account-container">
-	        <a href="/join.jsp">로그인</a>
+	        <a href="#">로그인</a>
 	        <span class="divider">|</span>
-	        <a href="#" style="margin-right: 30px;">회원가입</a>
+	        <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
         </div>
     </header>
 

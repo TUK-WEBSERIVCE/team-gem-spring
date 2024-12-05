@@ -7,27 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <style>
-        body {
+        body {  /* body 태그 전체 */
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
         }
 
-        header {
+        header {  /* header 태그 전체 */
             width: 100%;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
             padding: 10px 20px;
-            background-color: #333;
+            background-color: #333333;
             color: white;
         }
 
-        header a {
+        .page-title {  /* 페이지 제목*/
+            font-size: 2em; /* 페이지 이름을 크게 */
+            font-weight: bold;
+            margin-left: 30px;
+            display: flex;
+        }
+
+        a {  /* a 태그 전체 */
+            color: inherit; /* 부모 요소의 글자색과 일치 */
+            text-decoration: none;
+        }
+
+        header a {  /* header 태그 내 a 태그 */
             color: white;
             text-decoration: none;
         }
@@ -89,25 +100,27 @@
             color: #333;
         }
 
-        nav {
+        .divider {  /* 로그인, 회원가입 구분자를 위한 클래스 */
+            color: white;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        nav {  /* 네비게이터 nav 태그 전체 */
             width: 100%;
             background-color: #007bff;
+            color: white;
             padding: 10px 0;
             position: fixed;
             bottom: 0;
         }
 
-        nav ul {
+        nav ul {  /* nav 태그 내 ul 태그 */
             list-style-type: none;
             display: flex;
             justify-content: space-around;
             margin: 0;
             padding: 0;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
         }
         
         * {
@@ -119,16 +132,19 @@
 </head>
 <body>
     <header>
-        <a href="login.jsp">로그인</a>
-        <span class="divider">|</span>
-        <a href="#" style="margin-right: 50px;">회원가입</a>
+        <div class="page-title"><div class="" style="color: #0082CC;">TUK&nbsp;</div>Team Gem</div>
+        <div class="account-container">
+            <a href="#">로그인</a>
+            <span class="divider">|</span>
+            <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
+        </div>
     </header>
 
     <div class="container">
         <h2>회원가입</h2>
-            <form method="post" action="join.jsp">
-                <label for="name">이름</label>
-                <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+            <form method="post" action="/member/register">
+                <label for="nickname">닉네임</label>
+                <input type="text" id="nickname" name="nickname" placeholder="이름을 입력하세요" required>
 
                 <label for="loginId">아이디</label>
                 <input type="text" id="loginId" name="loginId" placeholder="아이디를 입력하세요" required>
@@ -136,19 +152,13 @@
                 <label for="password">비밀번호</label>
                 <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
 
-				<label for="confirmPassword">비밀번호 확인</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="비밀번호를 다시 입력하세요" required>
-
-                <label for="email">이메일</label>
-                <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required>
-
                 <input type="submit" value="회원가입">
             </form>
     </div>
 
     <nav>
         <ul>
-            <li><a href="#">내 팀</a></li>
+            <li><a href="#">&nbsp;&nbsp;&nbsp;내 팀&nbsp;&nbsp;&nbsp;</a></li>
             <li><a href="#">홈</a></li>
             <li><a href="#">지원 현황</a></li>
         </ul>
