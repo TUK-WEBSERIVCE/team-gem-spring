@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/member")
@@ -21,8 +22,9 @@ public class MemberController {
 
     private final MemberService memberService;
     @PostMapping("/register")
-    public MemberRegisterResponse register(@RequestBody RegisterRequest request){
-        return memberService.register(request);
+    public String register(RegisterRequest registerRequest){
+        memberService.register(registerRequest);
+        return "mainPage";
     }
 
     @PostMapping("/login")
