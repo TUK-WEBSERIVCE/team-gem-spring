@@ -17,14 +17,20 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public MemberRegisterResponse register(RegisterRequest request){
+        duplicationLoginId(request.loginId());
         Member member = Member.builder()
             .loginId(request.loginId())
             .password(request.password())
             .nickname(request.nickname())
             .build();
-
         memberRepository.save(member);
         return new MemberRegisterResponse(member.getId());
+    }
+
+    private void duplicationLoginId(String loginId){
+        if(memberRepository.existsByLoginId(loginId)){
+            throw new IllegalStateException("중복된 아이디입니다.");
+        }
     }
 
     public LoginResponse login(LoginRequest request){
