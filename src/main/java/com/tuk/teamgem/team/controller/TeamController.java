@@ -1,5 +1,6 @@
 package com.tuk.teamgem.team.controller;
 
+import com.tuk.teamgem.argumentresolver.AuthMember;
 import com.tuk.teamgem.member.dto.RegisterRequest;
 import com.tuk.teamgem.team.dto.TeamRegisterRequest;
 import com.tuk.teamgem.team.service.TeamService;
@@ -15,7 +16,7 @@ public class TeamController {
     private final TeamService teamService;
 
     @PostMapping("/team")
-    public void register(TeamRegisterRequest request){
-        teamService.register(request);
+    public void register(TeamRegisterRequest request,@AuthMember Long memberId){
+        teamService.register(request,memberId);
     }
 }

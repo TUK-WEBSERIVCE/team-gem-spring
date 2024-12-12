@@ -39,4 +39,9 @@ public class MemberService {
             .orElseThrow(() -> new IllegalStateException("아이디와 비밀번호가 일치하지 않습니다."));
         return new LoginResponse(member.getId());
     }
+
+    public Member getMember(Long memberId){
+        return memberRepository.findById(memberId).orElseThrow(()-> new IllegalArgumentException(
+            "회원을 찾을 수 없습니다."));
+    }
 }
