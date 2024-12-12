@@ -20,7 +20,11 @@ public class MemberController {
     private final MemberService memberService;
     @PostMapping("/register")
     public String register(RegisterRequest registerRequest){
-        memberService.register(registerRequest);
+        try{
+            memberService.register(registerRequest);
+        }catch (IllegalStateException e){
+            return "duplicationLoginId";
+        }
         return "mainPage";
     }
 

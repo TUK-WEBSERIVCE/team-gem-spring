@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,4 +24,14 @@ public class Team {
     private int field;
     private LocalDateTime dueDate;
     private String description;
+
+    @Builder
+    public Team(final String name, final int capacity, final int field, final LocalDateTime dueDate,
+        final String description) {
+        this.name = name;
+        this.capacity = capacity;
+        this.field = field;
+        this.dueDate = dueDate;
+        this.description = description;
+    }
 }
