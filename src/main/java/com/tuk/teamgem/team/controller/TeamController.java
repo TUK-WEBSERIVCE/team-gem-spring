@@ -16,7 +16,8 @@ public class TeamController {
     private final TeamService teamService;
 
     @PostMapping("/team")
-    public void register(TeamRegisterRequest request,@AuthMember Long memberId){
+    public String register(TeamRegisterRequest request,@AuthMember Long memberId){
         teamService.register(request,memberId);
+        return "mainPage";
     }
 }
