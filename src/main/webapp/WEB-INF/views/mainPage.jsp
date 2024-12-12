@@ -155,7 +155,7 @@
     </header>
 
     <div class="container">
-    	<div class="main-title">팀 목록</div>
+    	<div class="main-title">지원 가능한 팀 목록</div>
     	<hr>
     	<div class="table-border">
         	<table>
@@ -172,7 +172,7 @@
 	            <tbody>
 	                <tr><!-- 샘플 데이터 -->
 	                    <td>3</td>
-	                    <td><a href="#">프로젝트 C</a></td>
+	                    <td><a href="/detailTeam-page">프로젝트 C</a></td>
 	                    <td>0/5</td>
 	                    <td>백엔드 개발</td>
 	                    <td class="status-open">모집중</td>
@@ -180,7 +180,7 @@
 	                </tr>
 	                <tr><!-- 샘플 데이터 -->
 	                    <td>2</td>
-	                    <td><a href="#">프로젝트 B</a></td>
+	                    <td><a href="/detailTeam-page">프로젝트 B</a></td>
 	                    <td>4/4</td>
 	                    <td>디자인</td>
 	                    <td class="status-closed">종료</td>
@@ -188,7 +188,7 @@
 	                </tr>
 	                <tr><!-- 샘플 데이터 -->
 	                    <td>1</td>
-	                    <td><a href="#">프로젝트 A</a></td>
+	                    <td><a href="/detailTeam-page">프로젝트 A</a></td>
 	                    <td>2/3</td>
 	                    <td>임베디드</td>
 	                    <td class="status-closed">종료</td>
@@ -205,7 +205,7 @@
     <!-- 하단 네비게이션 바 -->
     <nav>
         <ul>
-            <li><a href="/myTeam-page">&nbsp;&nbsp;&nbsp;내 팀&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a href="/myTeamList-page">&nbsp;&nbsp;&nbsp;내 팀&nbsp;&nbsp;&nbsp;</a></li>
             <li><a href="/">홈</a></li>
             <li><a href="/apply-page">지원 현황</a></li>
         </ul>

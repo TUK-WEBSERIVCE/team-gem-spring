@@ -151,7 +151,7 @@
 	            <tbody>
 	                <tr><!-- 샘플 데이터 -->
 	                    <td>1</td>
-	                    <td><a href="#">프로젝트 A</a></td>
+	                    <td><a href="/myTeam-page">프로젝트 A</a></td>
 	                    <td>2/3</td>
 	                    <td>임베디드</td>
 	                    <td class="status-closed">종료</td>
@@ -165,7 +165,7 @@
         <!-- 하단 네비게이션 바 -->
     <nav>
         <ul>
-			<li><a href="/myTeam-page">&nbsp;&nbsp;&nbsp;내 팀&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a href="/myTeamList-page">&nbsp;&nbsp;&nbsp;내 팀&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a href="/">홈</a></li>
 			<li><a href="/apply-page">지원 현황</a></li>
         </ul>
