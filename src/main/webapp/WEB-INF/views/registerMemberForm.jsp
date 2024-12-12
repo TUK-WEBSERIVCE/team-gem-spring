@@ -106,8 +106,8 @@
             margin: 0px auto;
         }
 
-        .button-container button {
-            margin-right: 20%;
+        .button-container input {
+            margin-right: 3%;
             padding: 10px 20px;
             background-color: #007bff;
             color: white;
@@ -115,7 +115,7 @@
             cursor: pointer;
         }
 
-        .button-container button:hover {
+        .button-container input:hover {
             background-color: #0051A8;
         }
 
@@ -150,31 +150,30 @@
 <div class="container">
     <div class="main-title">모집하기</div>
     <hr>
-    <form>
+    <form method="post" action="/team">
         <!-- 제목 입력 -->
         <div class="form-group">
-            <label for="title">제목</label>
-            <input type="text" id="title" name="title" class="form-control" />
+            <label for="name">제목</label>
+            <input type="text" id="name" name="name" class="form-control" required/>
         </div>
 
         <!-- 모집 인원 입력 -->
         <div class="form-group">
-            <label for="recruitment">모집 인원</label>
-            <input type="number" id="recruitment" name="recruitment" class="form-control" />
+            <label for="capacity">모집 인원</label>
+            <input type="number" id="capacity" name="capacity" class="form-control" required/>
         </div>
 
         <!-- 분야 입력 -->
         <div class="form-group">
             <label for="field">분야</label>
-            <input type="text" id="field" name="field" class="form-control" />
+            <input type="text" id="field" name="field" class="form-control" required/>
         </div>
 
         <!-- 마감일 및 시간 입력 -->
         <div class="form-group">
-            <label for="deadline">마감일</label>
+            <label for="dueDate">마감일</label>
             <div class="date-container">
-                <input type="date" id="deadline" name="deadline" class="form-control" />
-                <input type="time" id="deadline-time" name="deadline-time" class="form-control" />
+                <input type="datetime-local" id="dueDate" name="dueDate" class="form-control" />
             </div>
         </div>
 
@@ -183,11 +182,12 @@
             <label for="description">설명</label>
             <textarea id="description" name="description" rows="5" class="form-control"></textarea>
         </div>
-    </form>
-</div>
 
-<div class="button-container">
-    <button>등록</button>
+        <div class="button-container">
+            <input type="submit" value="등록">
+        </div>
+
+    </form>
 </div>
 
 <nav>
@@ -199,13 +199,12 @@
 </nav>
 
 <script>
-    // 오늘 날짜 및 현재 시간을 기본값으로 설정
-    const today = new Date();
-    const formattedDate = today.toISOString().split("T")[0];
-    const formattedTime = today.toTimeString().split(":").slice(0, 2).join(":");
+    const dueDateInput = document.getElementById('dueDate');
+    const now = new Date();
 
-    document.getElementById("deadline").value = formattedDate;
-    document.getElementById("deadline-time").value = formattedTime;
+    // 현재 시간을 'yyyy-MM-ddTHH:mm' 형식으로 변환
+    const formattedDate = now.toISOString().slice(0, 16); // 'yyyy-MM-ddTHH:mm'
+    dueDateInput.value = formattedDate;
 </script>
 </body>
 </html>
