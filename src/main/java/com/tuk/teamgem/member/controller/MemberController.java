@@ -1,5 +1,6 @@
 package com.tuk.teamgem.member.controller;
 
+import com.tuk.teamgem.argumentresolver.AuthMember;
 import com.tuk.teamgem.member.dto.LoginRequest;
 import com.tuk.teamgem.member.dto.LoginResponse;
 import com.tuk.teamgem.member.dto.RegisterRequest;
