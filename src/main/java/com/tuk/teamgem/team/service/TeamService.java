@@ -5,6 +5,7 @@ import com.tuk.teamgem.member.service.MemberService;
 import com.tuk.teamgem.team.domain.Team;
 import com.tuk.teamgem.team.dto.TeamRegisterRequest;
 import com.tuk.teamgem.team.repository.TeamRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,9 @@ public class TeamService {
             .hostMember(member)
             .build();
         teamRepository.save(team);
+    }
+
+    public List<Team> getTeams(){
+        return teamRepository.findAll();
     }
 }

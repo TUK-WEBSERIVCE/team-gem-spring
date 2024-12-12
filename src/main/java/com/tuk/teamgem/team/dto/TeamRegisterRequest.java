@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public record TeamRegisterRequest(
     String name,
     int capacity,
-    int field,
+    String field,
     LocalDateTime dueDate,
     String description)
 {
