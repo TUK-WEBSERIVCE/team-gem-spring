@@ -115,7 +115,8 @@
         background-color: #E6E6E6;
         padding: 10px;
         border-radius: 5px;
-        min-height: 150px;
+        height: 300px; /* 고정된 높이 */
+        overflow-y: auto; /* 스크롤 추가 */
       }
 
       .comment-item {

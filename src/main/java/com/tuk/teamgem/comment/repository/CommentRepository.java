@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment,Long> {
     @Query("select c from Comment c join fetch c.member where c.team =:team order by c.createdAt "
-        + "desc")
+        + "desc ")
     List<Comment> findAllByTeam(Team team);
 }
