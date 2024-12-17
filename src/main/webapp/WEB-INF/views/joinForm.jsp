@@ -91,7 +91,7 @@
             justify-content: center;
         }
 
-        .button-container button {  
+        .button-container input {
             padding: 10px 20px;
             background-color: #007bff;
             color: white;
@@ -100,7 +100,7 @@
             font-size: 1em;
         }
 
-        .button-container button:hover {  
+        .button-container input:hover {
             background-color: #0051A8;
         }
         
@@ -142,13 +142,15 @@
 		<hr>
 		<form method="post" action="/team-members/${teamId}" >
 			<div class="form-group">
-			<label for="field">지원 분야</label>
-			<input type="text" id="field" name="field" placeholder="지원 분야를 입력해주세요.">
-			<br><br>
-			<label for="introduction">자기소개</label>
-			<textarea id="introduction" name="introduction" rows="6" placeholder="자기소개를 입력해주세요."></textarea>
+				<label for="field">지원 분야</label>
+				<input type="text" id="field" name="field" placeholder="지원 분야를 입력해주세요.">
+				<br><br>
+				<label for="introduction">자기소개</label>
+				<textarea id="introduction" name="introduction" rows="6" placeholder="자기소개를 입력해주세요."></textarea>
 
-			<input type="submit" value="참여하기">
+				<div class="button-container">
+					<input type="submit" value="참여하기">
+				</div>
 			</div>
 		</form>
     </div>
