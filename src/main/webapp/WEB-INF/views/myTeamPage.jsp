@@ -255,7 +255,7 @@
     <!-- 하단 네비게이션 바 -->
     <nav>
         <ul>
-            <li><a href="/myTeamList-page">&nbsp;&nbsp;&nbsp;내 팀&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a href="/team-members/my-teams">&nbsp;&nbsp;&nbsp;내 팀&nbsp;&nbsp;&nbsp;</a></li>
             <li><a href="/">홈</a></li>
             <li><a href="/apply-page">지원 현황</a></li>
         </ul>

@@ -9,6 +9,7 @@ import com.tuk.teamgem.teammember.domain.ApplicationStatus;
 import com.tuk.teamgem.teammember.domain.TeamMember;
 import com.tuk.teamgem.teammember.dto.TeamJoinRequest;
 import com.tuk.teamgem.teammember.repository.TeamMemberRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,5 +35,14 @@ public class TeamMemberService {
             .applicationStatus(ApplicationStatus.PENDING)
             .build();
         teamMemberRepository.save(teamMember);
+    }
+
+    public List<TeamMember> findMyTeams(Long memberId){
+        Member member = memberService.getMember(memberId);
+        return teamMemberRepository.findAllByMember(member);
+    }
+
+    public void findMyTeam(){
+        
     }
 }
