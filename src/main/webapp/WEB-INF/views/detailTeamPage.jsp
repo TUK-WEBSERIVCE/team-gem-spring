@@ -221,7 +221,7 @@
         </div>
     </div>
     <div class="button-container">
-        <button onclick="location.href='/joinForm-page'">참여하기</button>
+        <button onclick="location.href='/team-members/join/${team.id}'">참여하기</button>
     </div>
     
     <!-- 하단 네비게이션 바 -->

@@ -138,20 +138,19 @@
     </header>
 
     <div class="container">
-    	<div class="main-title">지원</div>
-    	<hr>
-    	
-    	<div class="form-group">
-    	    <label for="field">지원 분야</label>
-    	    <input type="text" id="field" name="field" placeholder="지원 분야를 입력해주세요.">
+		<div class="main-title">지원</div>
+		<hr>
+		<form method="post" action="/team-members/${teamId}" >
+			<div class="form-group">
+			<label for="field">지원 분야</label>
+			<input type="text" id="field" name="field" placeholder="지원 분야를 입력해주세요.">
 			<br><br>
-    	    <label for="introduction">자기소개</label>
-    	    <textarea id="introduction" name="introduction" rows="6" placeholder="자기소개를 입력해주세요."></textarea>
-    	</div>
-    	
-    	<div class="button-container">
-        	<button>참여하기</button>
-    	</div>
+			<label for="introduction">자기소개</label>
+			<textarea id="introduction" name="introduction" rows="6" placeholder="자기소개를 입력해주세요."></textarea>
+
+			<input type="submit" value="참여하기">
+			</div>
+		</form>
     </div>
     
     <!-- 하단 네비게이션 바 -->

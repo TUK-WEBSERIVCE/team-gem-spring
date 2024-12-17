@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Builder;
 import lombok.Getter;
 
 @Entity
@@ -25,4 +26,18 @@ public class TeamMember {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Member member;
+
+    private String field;
+    private String introduction;
+    private ApplicationStatus applicationStatus;
+
+    @Builder
+    public TeamMember(final Team team, final Member member, String field, String introduction,
+        final ApplicationStatus applicationStatus) {
+        this.team = team;
+        this.member = member;
+        this.field = field;
+        this.introduction = introduction;
+        this.applicationStatus = applicationStatus;
+    }
 }
