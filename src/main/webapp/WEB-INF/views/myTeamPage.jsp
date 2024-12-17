@@ -211,7 +211,12 @@
                         <div class="applicant-item"><!-- 샘플 데이터 -->
                             <span>${teamMember.member.nickname}</span>
                             <div class="applicant-buttons">
-                                <button class="detail-btn">자세히보기</button>
+                                <button class="detail-btn" onclick="toggleDetails(${teamMember.id})">자세히보기</button>
+                                <div id="details-${teamMember.id}" style="display: none;">
+                                    <!-- 숨겨진 정보 내용 -->
+                                    <p>분야: ${teamMember.field}</p>
+                                    <p>자기 소개: ${teamMember.introduction}</p>
+                                </div>
                                 <form id="hiddenForm1" style="display: inline" action="/team-members/approve" method="POST">
                                     <!-- 요청 본문 데이터 -->
                                     <input type="hidden" name="memberId" value="${teamMember.member.id}">
@@ -242,7 +247,12 @@
                     <div class="applicant-item"><!-- 샘플 데이터 -->
                         <span>${teamMember.member.nickname}</span>
                         <div class="applicant-buttons">
-                            <button class="detail-btn">자세히보기</button>
+                            <button class="detail-btn" onclick="toggleDetails(${teamMember.id})">자세히보기</button>
+                            <div id="details-${teamMember.id}" style="display: none;">
+                                <!-- 숨겨진 정보 내용 -->
+                                <p>분야: ${teamMember.field}</p>
+                                <p>자기 소개: ${teamMember.introduction}</p>
+                            </div>
                         </div>
                     </div>
                 </c:if>
@@ -254,25 +264,34 @@
     <div class="comment-section">
         <h3>소통 창구</h3>
         <div class="comment-box">
-            <div class="comment-item"><!-- 샘플 데이터 -->
-                <span class="comment-at">2024-11-21 16:55</span>
-                <span class="nickname">Choi:</span>
-                <span class="message">안녕하세요!</span>
-            </div>
-            <div class="comment-item"><!-- 샘플 데이터 -->
-                <span class="comment-at">2024-11-21 16:58</span>
-                <span class="nickname">Song:</span>
-                <span class="message">반갑습니다.</span>
-            </div>
+            <c:forEach var="comment" items="${myTeam.comments}">
+                <div class="comment-item"><!-- 샘플 데이터 -->
+                    <span class="comment-at">${comment.createdAt}</span>
+                    <span class="nickname">${comment.member.nickname}:</span>
+                    <span class="message">${comment.content}</span>
+                </div>
+            </c:forEach>
         </div>
-        <form method="post" action="/team-members/${teamId}">
+        <form method="post" action="/comment">
             <div class="comment-form">
-                <input type="text" id="chat" name="chat" placeholder="댓글을 입력하세요">
+                <input type="hidden" name="teamId" value="${myTeam.teamMembers.get(0).team.id}">
+                <input type="text" id="content" name="content" placeholder="댓글을 입력하세요">
                 <input class="submit-btn" type="submit" value="등록">
             </div>
         </form>
     </div>
 </div>
+
+<script>
+  function toggleDetails(memberId) {
+    const details = document.getElementById(`details-`+memberId);
+    if (details.style.display === 'none') {
+      details.style.display = 'block';
+    } else {
+      details.style.display = 'none';
+    }
+  }
+</script>
 
 <!-- 하단 네비게이션 바 -->
 <nav>

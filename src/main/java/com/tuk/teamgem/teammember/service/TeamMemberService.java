@@ -1,5 +1,7 @@
 package com.tuk.teamgem.teammember.service;
 
+import com.tuk.teamgem.comment.domain.Comment;
+import com.tuk.teamgem.comment.service.CommentService;
 import com.tuk.teamgem.member.domain.Member;
 import com.tuk.teamgem.member.service.MemberService;
 import com.tuk.teamgem.team.domain.Team;
@@ -23,6 +25,7 @@ public class TeamMemberService {
     private final TeamMemberRepository teamMemberRepository;
     private final TeamService teamService;
     private final MemberService memberService;
+    private final CommentService commentService;
 
     @Transactional
     public void joinRequest(Long memberId, Long teamId, TeamJoinRequest teamJoinRequest){
@@ -47,7 +50,8 @@ public class TeamMemberService {
         Team team = teamService.getTeam(teamId);
         List<TeamMember> teamMembers = teamMemberRepository.findByTeam(team);
         boolean isHost = team.isHost(memberId);
-        return new MyTeamResponse(teamMembers,isHost);
+        List<Comment> comments = commentService.findAllByTeam(team);
+        return new MyTeamResponse(teamMembers,isHost,comments);
     }
 
     @Transactional
