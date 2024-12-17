@@ -5,12 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.mapping.ToOne;
 
 @Entity
 @Getter
@@ -26,7 +28,7 @@ public class Team {
     private String field;
     private LocalDateTime dueDate;
     private String description;
-    @OneToOne
+    @ManyToOne
     private Member hostMember;
 
     @Builder
