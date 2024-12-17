@@ -1,8 +1,11 @@
 package com.tuk.teamgem.teammember.controller;
 
+import com.tuk.teamgem.teammember.domain.TeamMember;
 import com.tuk.teamgem.teammember.dto.TeamJoinRequest;
 import com.tuk.teamgem.teammember.service.TeamMemberService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -31,5 +34,17 @@ public class TeamMemberController {
     public String joinForm(Model model,@PathVariable Long teamId){
         model.addAttribute("teamId",teamId);
         return "joinForm";
+    }
+
+    @GetMapping("/my-teams")
+    public String myTeams(Model model,@CookieValue Long memberId){
+        List<TeamMember> myTeams = teamMemberService.findMyTeams(memberId);
+        model.addAttribute("myTeams",myTeams);
+        return "myTeamList";
+    }
+
+    @GetMapping("/my-team")
+    public String myTeam(){
+        teamMemberService.findMyTeam();
     }
 }

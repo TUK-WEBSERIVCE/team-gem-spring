@@ -12,9 +12,6 @@ public class PageController {
     @GetMapping("/apply-page") // 지원현황
     public String apply() { return "applyStatusPage"; }
 
-    @GetMapping("/myTeamList-page") // 내 팀
-    public String myTeamList() { return "myTeamList"; }
-
     @GetMapping("/registerMember-page") // 모집 페이지
     public String registerMember() { return "registerMemberForm"; }
 
