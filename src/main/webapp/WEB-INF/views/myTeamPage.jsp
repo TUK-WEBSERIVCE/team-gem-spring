@@ -152,9 +152,9 @@
     }
 
     .comment-form .submit-btn {
-        background-color: #333333;
+        width: 7%;
+        background-color: #444444;
         color: white;
-
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
