@@ -5,7 +5,9 @@ import com.tuk.teamgem.member.dto.LoginRequest;
 import com.tuk.teamgem.member.dto.LoginResponse;
 import com.tuk.teamgem.member.dto.RegisterRequest;
 import com.tuk.teamgem.member.service.MemberService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -30,10 +32,14 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login(LoginRequest loginRequest, HttpServletRequest request){
+    public String login(LoginRequest loginRequest, HttpServletRequest request,
+        HttpServletResponse response){
         LoginResponse loginResponse = memberService.login(loginRequest);
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(true);
         session.setAttribute("id",loginResponse.memberId());
+        session.setMaxInactiveInterval(36000);
+        Cookie cookie = new Cookie("memberId", loginResponse.memberId().toString());
+        response.addCookie(cookie);
         return "mainPage";
     }
 
