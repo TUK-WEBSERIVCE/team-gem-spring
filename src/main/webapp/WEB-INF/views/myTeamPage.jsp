@@ -151,9 +151,10 @@
         border-radius: 5px;
     }
 
-    .comment-form button {
-        background-color: #007bff;
+    .comment-form .submit-btn {
+        background-color: #333333;
         color: white;
+
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
@@ -242,10 +243,12 @@
 			        <span class="message">반갑습니다.</span>
                 </div>
             </div>
-            <div class="comment-form">
-                <input type="text" placeholder="댓글을 입력하세요">
-                <button style="background-color: #333333; color: white;">등록</button>
-            </div>
+            <form method="post" action="/team-members/${teamId}" >
+                <div class="comment-form">
+                    <input type="text" id="chat" name="chat" placeholder="댓글을 입력하세요">
+                    <input class="submit-btn" type="submit" value="등록">
+                </div>
+            </form>
         </div>
     </div>
     

@@ -150,7 +150,7 @@
 <div class="container">
     <div class="main-title">모집하기</div>
     <hr>
-    <form method="post" action="/team">
+    <form method="post" action="/team" >
         <!-- 제목 입력 -->
         <div class="form-group">
             <label for="name">제목</label>
@@ -202,9 +202,14 @@
     const dueDateInput = document.getElementById('dueDate');
     const now = new Date();
 
-    // 현재 시간을 'yyyy-MM-ddTHH:mm' 형식으로 변환
-    const formattedDate = now.toISOString().slice(0, 16); // 'yyyy-MM-ddTHH:mm'
+    // KST 기준으로 시간 조정 (UTC+9)
+    const kstOffset = 9 * 60 * 60 * 1000; // 9시간을 밀리초로 변환
+    const kstDate = new Date(now.getTime() + kstOffset);
+
+    // KST 시간을 'yyyy-MM-ddTHH:mm' 형식으로 변환
+    const formattedDate = kstDate.toISOString().slice(0, 16); // 'yyyy-MM-ddTHH:mm'
     dueDateInput.value = formattedDate;
 </script>
+
 </body>
 </html>
