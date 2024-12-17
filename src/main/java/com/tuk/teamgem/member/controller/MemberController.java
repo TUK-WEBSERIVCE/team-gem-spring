@@ -39,6 +39,7 @@ public class MemberController {
         session.setAttribute("id",loginResponse.memberId());
         session.setMaxInactiveInterval(36000);
         Cookie cookie = new Cookie("memberId", loginResponse.memberId().toString());
+        cookie.setPath("/");
         response.addCookie(cookie);
         return "mainPage";
     }
