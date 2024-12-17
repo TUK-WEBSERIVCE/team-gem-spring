@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
+import org.springframework.boot.Banner.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -66,5 +67,12 @@ public class TeamMemberController {
         teamMemberService.reject(approveRequest);
         String referer = request.getHeader("Referer");
         return "redirect:"+ referer;
+    }
+
+    @GetMapping("/application")
+    public String applicationStatus(@CookieValue Long memberId, Model model){
+        List<TeamMember> applications = teamMemberService.findApplication(memberId);
+        model.addAttribute("applications",applications);
+        return "applyStatusPage";
     }
 }

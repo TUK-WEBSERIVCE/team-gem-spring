@@ -14,6 +14,9 @@ public interface TeamMemberRepository extends JpaRepository<TeamMember,Long> {
         + ".applicationStatus =:status")
     List<TeamMember> findAllByMember(Member member, ApplicationStatus status);
 
+    @Query("select tm from TeamMember tm join fetch tm.team where tm.member =:member")
+    List<TeamMember> findApplicationByMember(Member member);
+
     @Query("select tm from TeamMember tm join fetch tm.team join fetch tm.member where tm"
         + ".team=:team")
     List<TeamMember> findByTeam(Team team);

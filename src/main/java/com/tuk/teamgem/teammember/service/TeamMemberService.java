@@ -68,4 +68,9 @@ public class TeamMemberService {
             .orElseThrow(() -> new RuntimeException("팀멤버 없음"));
         teamMember.reject();
     }
+
+    public List<TeamMember> findApplication(Long memberId){
+        Member member = memberService.getMember(memberId);
+        return teamMemberRepository.findApplicationByMember(member);
+    }
 }

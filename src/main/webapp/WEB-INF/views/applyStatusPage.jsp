@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -128,20 +129,22 @@
     <hr>
 
     <div>
-        <div class="apply-list">
-            <div class="apply-item"><!-- 샘플 데이터 -->
-                <span>프로젝트 C</span>
-                <div class="waitingStatus">대기</div>
+        <c:forEach var="application" items="${applications}">
+            <div class="apply-list">
+                <div class="apply-item"><!-- 샘플 데이터 -->
+                    <span>${application.team.name}</span>
+                    <c:if test="${application.applicationStatus == 'PENDING'}">
+                        <div class="waitingStatus">대기</div>
+                    </c:if>
+                    <c:if test="${application.applicationStatus == 'APPROVED'}">
+                        <div class="okStatus">승인</div>
+                    </c:if>
+                    <c:if test="${application.applicationStatus == 'REJECTED'}">
+                        <div class="noStatus">거절</div>
+                    </c:if>
+                </div>
             </div>
-            <div class="apply-item"><!-- 샘플 데이터 -->
-                <span>프로젝트 B</span>
-                <div class="okStatus">승인</div>
-            </div>
-            <div class="apply-item"><!-- 샘플 데이터 -->
-                <span>프로젝트 A</span>
-                <div class="noStatus">거절</div>
-            </div>
-        </div>
+        </c:forEach>
     </div>
 
 </div>
@@ -151,7 +154,7 @@
     <ul>
         <li><a href="/team-members/my-teams">&nbsp;&nbsp;&nbsp;내 팀&nbsp;&nbsp;&nbsp;</a></li>
         <li><a href="/">홈</a></li>
-        <li><a href="/apply-page">지원 현황</a></li>
+        <li><a href="/team-members/application">지원 현황</a></li>
     </ul>
 </nav>
 
