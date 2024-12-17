@@ -32,4 +32,8 @@ public class TeamService {
     public List<Team> getTeams(){
         return teamRepository.findAll();
     }
+
+    public Team getTeam(Long teamId){
+        return teamRepository.findById(teamId).orElseThrow(()->new RuntimeException("없는 팀"));
+    }
 }

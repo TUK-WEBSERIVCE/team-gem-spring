@@ -177,21 +177,13 @@
     	<div class="table-border">
         	<table>
 	            <tbody><!-- 샘플 데이터 -->
-<%--				<td>${team.id}</td>--%>
-<%--				<td><a href="/detailTeam-page?id=${team.id}">${team.name}</a></td>--%>
-<%--				<td>2/${team.capacity}</td>--%>
-<%--				<td>${team.field}</td>--%>
-<%--				<td>--%>
-<%--					<span class="status" data-duedate="${team.dueDate}"></span>--%>
-<%--				</td>--%>
-<%--				<td>${team.dueDate}</td>--%>
 	                <tr>
 	                    <th class="th-style">제목</th>
 	                    <td>${team.name}</td>
 	                </tr>
 	                <tr>
 	                    <th>모집 인원</th>
-	                    <td>0/${team.capacity}</td>
+	                    <td>${team.numberOfParticipant}/${team.capacity}</td>
 	                </tr>
 	                <tr>
 	                    <th>분야</th>
@@ -225,7 +217,7 @@
 		</script>
         <div class="project-description"><!-- 샘플 데이터 -->
             <strong>프로젝트 설명:</strong> <br>
-            백엔드 개발자 모집중입니다.
+            ${team.description}
         </div>
     </div>
     <div class="button-container">

@@ -176,8 +176,8 @@
             <c:forEach var="team" items="${teams}">
                 <tr>
                     <td>${team.id}</td>
-                    <td><a href="/detailTeam-page?id=${team.id}">${team.name}</a></td>
-                    <td>2/${team.capacity}</td>
+                    <td><a href="/team/${team.id}">${team.name}</a></td>
+                    <td>${team.numberOfParticipant}/${team.capacity}</td>
                     <td>${team.field}</td>
                     <td>
                         <span class="status" data-duedate="${team.dueDate}"></span>

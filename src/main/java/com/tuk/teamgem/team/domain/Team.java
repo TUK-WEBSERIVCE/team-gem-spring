@@ -30,17 +30,22 @@ public class Team {
     private String description;
     @ManyToOne
     private Member hostMember;
+    private int numberOfParticipant;
 
     @Builder
     public Team(final String name, final int capacity, final String field,
         final LocalDateTime dueDate,
-        final String description, Member hostMember) {
+        final String description, Member hostMember, int numberOfParticipant) {
         this.name = name;
         this.capacity = capacity;
         this.field = field;
         this.dueDate = dueDate;
         this.description = description;
-
         this.hostMember = hostMember;
+        this.numberOfParticipant = 1;
+    }
+
+    public void participate(){
+        this.numberOfParticipant++;
     }
 }
