@@ -1,214 +1,220 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tuk-Team-Gem</title>
-<style>
-        body {  /* body 태그 전체 */
-            font-family: Arial, sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuk-Team-Gem</title>
+    <style>
+      body { /* body 태그 전체 */
+        font-family: Arial, sans-serif;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+      }
 
-        header {  /* header 태그 전체 */
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #333333;
-            color: white;
-        }
-        
-        .page-title {  /* 페이지 제목*/
-            font-size: 2em; /* 페이지 이름을 크게 */
-            font-weight: bold;
-            margin-left: 30px;
-            display: flex;
-        }
-        
-        a {  /* a 태그 전체 */
-        	color: inherit; /* 부모 요소의 글자색과 일치 */
-        	text-decoration: none;
-        }
+      header { /* header 태그 전체 */
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #333333;
+        color: white;
+      }
 
-        header a {  /* header 태그 내 a 태그 */
-            color: white;
-            text-decoration: none;
-        }
-		
-		.main-title {
-			font-weight: bold;
-			font-size: 1.5em;
-			color: #333333;
-		}
+      .page-title { /* 페이지 제목*/
+        font-size: 2em; /* 페이지 이름을 크게 */
+        font-weight: bold;
+        margin-left: 30px;
+        display: flex;
+      }
 
-        .container {  /* container 클래스 */
-			width: 80%;
-        	margin: 20px auto;
-        	margin-top: 10px;
-            max-width: 1000px;
-            padding: 20px;
-            
-        }
-        
-        .table-border {
-        	border-radius: 10px;
-        	background-color: #333333;
-        	padding: 1px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+      a { /* a 태그 전체 */
+        color: inherit; /* 부모 요소의 글자색과 일치 */
+        text-decoration: none;
+      }
 
-        table {  /* table 태그 전체 */
-  			border-collapse: collapse;
-            border-radius: 10px;
-            overflow: hidden;
-            width: 100%;
-        }
+      header a { /* header 태그 내 a 태그 */
+        color: white;
+        text-decoration: none;
+      }
 
-        th, td {  /* th, td 태그 전체 */
-            padding: 15px;
-            text-align: center;
-        }
+      .main-title {
+        font-weight: bold;
+        font-size: 1.5em;
+        color: #333333;
+      }
 
-        th {  /* th 태그 전체 */
-            background-color: #333333;
-            color: white;
-        }
+      .container { /* container 클래스 */
+        width: 80%;
+        margin: 20px auto;
+        margin-top: 10px;
+        max-width: 1000px;
+        padding: 20px;
 
-        tr:nth-child(even) {  /* 짝수번째 행일 경우 */
-            background-color: #D6F4FF;
-        }
+      }
 
-        tr:nth-child(odd) {  /* 홀수번째 행일 경우 */
-            background-color: #F9F9F9;
-        }
+      .table-border {
+        border-radius: 10px;
+        background-color: #333333;
+        padding: 1px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
 
-        .status-open {  /* open상태(모집중) 클래스 */
-            color: green;
-            font-weight: bold;
-        }
+      table { /* table 태그 전체 */
+        border-collapse: collapse;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 100%;
+      }
 
-        .status-closed {  /* closed상태(모집종료) 클래스 */
-            color: red;
-            font-weight: bold;
-        }
+      th, td { /* th, td 태그 전체 */
+        padding: 15px;
+        text-align: center;
+      }
 
-        .button-container {  /* 버튼 정렬을 위한 컨테이너 클래스 */
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            margin: 0px auto;
-        }
+      th { /* th 태그 전체 */
+        background-color: #333333;
+        color: white;
+      }
 
-        .button-container button {  /* container 클래스 내 button 태그 */
-            margin-right: 20%;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+      tr:nth-child(even) { /* 짝수번째 행일 경우 */
+        background-color: #D6F4FF;
+      }
 
-        .button-container button:hover {  /* 버튼에 커서 올렸을 때 */
-            background-color: #0051A8;
-        }
-        
-        .divider {  /* 로그인, 회원가입 구분자를 위한 클래스 */
-    		color: white;
-    		margin-left: 10px;
-    		margin-right: 10px;
-		}
-		
-		nav {  /* 네비게이터 nav 태그 전체 */
-            width: 100%;
-            background-color: #007bff;            
-            color: white;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-        }
+      tr:nth-child(odd) { /* 홀수번째 행일 경우 */
+        background-color: #F9F9F9;
+      }
 
-        nav ul {  /* nav 태그 내 ul 태그 */
-            list-style-type: none;
-            display: flex;
-            justify-content: space-around;
-            margin: 0;
-            padding: 0;
-        }
+      .status-open { /* open상태(모집중) 클래스 */
+        color: green;
+        font-weight: bold;
+      }
+
+      .status-closed { /* closed상태(모집종료) 클래스 */
+        color: red;
+        font-weight: bold;
+      }
+
+      .button-container { /* 버튼 정렬을 위한 컨테이너 클래스 */
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin: 0px auto;
+      }
+
+      .button-container button { /* container 클래스 내 button 태그 */
+        margin-right: 20%;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .button-container button:hover { /* 버튼에 커서 올렸을 때 */
+        background-color: #0051A8;
+      }
+
+      .divider { /* 로그인, 회원가입 구분자를 위한 클래스 */
+        color: white;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      nav { /* 네비게이터 nav 태그 전체 */
+        width: 100%;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+      }
+
+      nav ul { /* nav 태그 내 ul 태그 */
+        list-style-type: none;
+        display: flex;
+        justify-content: space-around;
+        margin: 0;
+        padding: 0;
+      }
     </style>
 </head>
 <body>
-	<header>
-		<a class="page-title" href="/"><div class="" style="color: #0082CC;">TUK&nbsp;</div>Team Gem</a>
-		<div class="account-container">
-	        <a href="/login-page">로그인</a>
-	        <span class="divider">|</span>
-	        <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
-        </div>
-    </header>
+<header>
+    <a class="page-title" href="/">
+        <div class="" style="color: #0082CC;">TUK&nbsp;</div>
+        Team Gem</a>
+    <div class="account-container">
+        <a href="/login-page">로그인</a>
+        <span class="divider">|</span>
+        <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
+    </div>
+</header>
 
-    <div class="container">
-    	<div class="main-title">지원 가능한 팀 목록</div>
-    	<hr>
-    	<div class="table-border">
-        	<table>
-	            <thead>
-	                <tr>
-	                    <th>번호</th>
-	                    <th>제목</th>
-	                    <th>모집 인원</th>
-	                    <th>분야</th>
-	                    <th>마감 여부</th>
-	                    <th>마감일</th>
-	                </tr>
-	            </thead>
-	            <tbody>
-	                <tr><!-- 샘플 데이터 -->
-	                    <td>3</td>
-	                    <td><a href="/detailTeam-page">프로젝트 C</a></td>
-	                    <td>0/5</td>
-	                    <td>백엔드 개발</td>
-	                    <td class="status-open">모집중</td>
-	                    <td>2024.11.12 오후 11:59</td>
-	                </tr>
-	                <tr><!-- 샘플 데이터 -->
-	                    <td>2</td>
-	                    <td><a href="/detailTeam-page">프로젝트 B</a></td>
-	                    <td>4/4</td>
-	                    <td>디자인</td>
-	                    <td class="status-closed">종료</td>
-	                    <td>2024.11.06 오전 2:59</td>
-	                </tr>
-	                <tr><!-- 샘플 데이터 -->
-	                    <td>1</td>
-	                    <td><a href="/detailTeam-page">프로젝트 A</a></td>
-	                    <td>2/3</td>
-	                    <td>임베디드</td>
-	                    <td class="status-closed">종료</td>
-	                    <td>2024.10.30 오후 12:00</td>
-	                </tr>
-	            </tbody>
-	        </table>
-        </div>
+<div class="container">
+    <div class="main-title">지원 가능한 팀 목록</div>
+    <hr>
+    <div class="table-border">
+        <table>
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>모집 인원</th>
+                <th>분야</th>
+                <th>마감 여부</th>
+                <th>마감일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="team" items="${teams}">
+                <tr>
+                    <td>${team.id}</td>
+                    <td><a href="/detailTeam-page?id=${team.id}">${team.name}</a></td>
+                    <td>2/${team.capacity}</td>
+                    <td>${team.field}</td>
+                    <td>
+                        <span class="status" data-duedate="${team.dueDate}"></span>
+                    </td>
+                    <td>${team.dueDate}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
-    <div class="button-container">
-        <button onclick="location.href='/registerMember-page'">모집하기</button>
-    </div>
-    
-    <!-- 하단 네비게이션 바 -->
-    <nav>
-        <ul>
-            <li><a href="/myTeamList-page">&nbsp;&nbsp;&nbsp;내 팀&nbsp;&nbsp;&nbsp;</a></li>
-            <li><a href="/">홈</a></li>
-            <li><a href="/apply-page">지원 현황</a></li>
-        </ul>
-    </nav>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const now = new Date();
+    document.querySelectorAll('.status').forEach(function(statusElement) {
+      const dueDate = new Date(statusElement.dataset.duedate);
+      if (dueDate > now) {
+        statusElement.textContent = '모집중';
+        statusElement.classList.add('status-open');
+      } else {
+        statusElement.textContent = '종료';
+        statusElement.classList.add('status-closed');
+      }
+    });
+  });
+</script>
+<div class="button-container">
+    <button onclick="location.href='/registerMember-page'">모집하기</button>
+</div>
+
+<!-- 하단 네비게이션 바 -->
+<nav>
+    <ul>
+        <li><a href="/myTeamList-page">&nbsp;&nbsp;&nbsp;내 팀&nbsp;&nbsp;&nbsp;</a></li>
+        <li><a href="/">홈</a></li>
+        <li><a href="/apply-page">지원 현황</a></li>
+    </ul>
+</nav>
 </body>
 </html>
