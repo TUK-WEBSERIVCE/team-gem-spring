@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>내 팀</title>
-<style>
-    body {  
+    <meta charset="UTF-8">
+    <title>내 팀</title>
+    <style>
+      body {
         font-family: Arial, sans-serif;
         margin: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
         overflow-x: hidden;
-    }
+      }
 
-    header {  
+      header {
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -24,135 +24,135 @@
         padding: 10px 20px;
         background-color: #333333;
         color: white;
-    }
-    
-    .page-title {  
-        font-size: 2em; 
+      }
+
+      .page-title {
+        font-size: 2em;
         font-weight: bold;
         margin-left: 30px;
         display: flex;
-    }
-    
-    .container {  
+      }
+
+      .container {
         width: 80%;
         margin: 20px auto;
         margin-top: 10px;
         max-width: 1000px;
         padding: 20px;
-    } 
-    
-    a {  
-        color: inherit; 
-        text-decoration: none;
-    }
+      }
 
-    header a {  
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      header a {
         color: white;
         text-decoration: none;
-    }
-    
-    .main-title {
+      }
+
+      .main-title {
         font-weight: bold;
         font-size: 1.5em;
         color: #333333;
         text-align: left;
         margin-bottom: 20px;
-    }
-    
-    .applicant-list {
+      }
+
+      .applicant-list {
         background-color: #D6F4FF;
         padding: 10px;
         border-radius: 5px;
         align-items: center; /* 상하 중앙 정렬 */
-    }
+      }
 
-    .applicant-item {
+      .applicant-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin: 5px;
         padding: 5px 0;
         border-bottom: 1px solid #ddd;
-    }
-    
-    .applicant-item span {
-    	font-weight: bold;
-    }
+      }
 
-    .applicant-item:last-child {
+      .applicant-item span {
+        font-weight: bold;
+      }
+
+      .applicant-item:last-child {
         border-bottom: none;
-    }
+      }
 
-    .applicant-buttons button {
+      .applicant-buttons button {
         margin-right: 5px;
         padding: 5px 10px;
         border: none;
         border-radius: 3px;
         cursor: pointer;
-    }
-    
-    .detail-btn {
-    	background-color: #444444;
-    	color: white;
-    }
+      }
 
-    .approve-btn {
+      .detail-btn {
+        background-color: #444444;
+        color: white;
+      }
+
+      .approve-btn {
         background-color: #4CAF50;
         color: white;
-    }
+      }
 
-    .reject-btn {
+      .reject-btn {
         background-color: #f44336;
         color: white;
-    }
+      }
 
-    .comment-section {
+      .comment-section {
         margin-top: 20px;
         text-align: left;
-    }
+      }
 
-    .comment-box {
+      .comment-box {
         background-color: #E6E6E6;
         padding: 10px;
         border-radius: 5px;
         min-height: 150px;
-    }
-    
-	.comment-item {
+      }
+
+      .comment-item {
         display: flex; /* Flexbox 사용 */
         align-items: center; /* 상하 중앙 정렬 */
         margin-bottom: 10px;
         font-size: 0.9em;
-    }
-    
-    .comment-item .comment-at {
-    	color: #444444;
-    	margin-right: 15px;
-    }
+      }
 
-    .comment-item .nickname {
+      .comment-item .comment-at {
+        color: #444444;
+        margin-right: 15px;
+      }
+
+      .comment-item .nickname {
         font-weight: bold; /* 닉네임 강조 */
         margin-right: 5px; /* 내용과 간격 추가 */
         color: #007bff; /* 닉네임 색상 */
-    }
+      }
 
-    .comment-item .message {
+      .comment-item .message {
         flex: 1; /* 나머지 공간 차지 */
-    }
+      }
 
-    .comment-form {
+      .comment-form {
         margin-top: 10px;
         width: 100%;
-    }
+      }
 
-    .comment-form input {
+      .comment-form input {
         width: 90%;
         padding: 10px;
         border: 1px solid #ddd;
         border-radius: 5px;
-    }
+      }
 
-    .comment-form .submit-btn {
+      .comment-form .submit-btn {
         width: 7%;
         background-color: #444444;
         color: white;
@@ -160,134 +160,127 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-    }
+      }
 
-    .divider {
+      .divider {
         color: white;
         margin-left: 10px;
         margin-right: 10px;
-    }
+      }
 
-    nav {  
+      nav {
         width: 100%;
-        background-color: #007bff;            
+        background-color: #007bff;
         color: white;
         padding: 10px 0;
         position: fixed;
         bottom: 0;
-    }
-    nav ul {  
+      }
+
+      nav ul {
         list-style-type: none;
         display: flex;
         justify-content: space-around;
         margin: 0;
         padding: 0;
-    }
-</style>
+      }
+    </style>
 </head>
 <body>
-    <header>
-        <a class="page-title" href="/"><div class="" style="color: #0082CC;">TUK&nbsp;</div>Team Gem</a>
-        <div class="account-container">
-            <a href="/login-page">로그인</a>
-            <span class="divider">|</span>
-            <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
-        </div>
-    </header>
+<header>
+    <a class="page-title" href="/">
+        <div class="" style="color: #0082CC;">TUK&nbsp;</div>
+        Team Gem</a>
+    <div class="account-container">
+        <a href="/login-page">로그인</a>
+        <span class="divider">|</span>
+        <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
+    </div>
+</header>
 
-    <div class="container">
-        <div class="main-title">프로젝트 이름</div><!-- 샘플 데이터 -->
-        <hr>
+<div class="container">
+    <div class="main-title">프로젝트 이름</div><!-- 샘플 데이터 -->
+    <hr>
 
-        <c:if test="${myTeam.isHost}">
+    <c:if test="${myTeam.isHost}">
         <div>
             <h3>지원자 목록</h3>
             <div class="applicant-list">
-                <div class="applicant-item"><!-- 샘플 데이터 -->
-                    <span>Hong Gil-dong</span>
-                    <div class="applicant-buttons">
-                    	<button class="detail-btn">자세히보기</button>
-                        <button class="approve-btn">승인</button>
-                        <button class="reject-btn">거절</button>
-                    </div>
-                </div>
-                <div class="applicant-item"><!-- 샘플 데이터 -->
-                    <span>Son Heung-min</span>
-                    <div class="applicant-buttons">
-                    	<button class="detail-btn">자세히보기</button>
-                        <button class="approve-btn">승인</button>
-                        <button class="reject-btn">거절</button>
-                    </div>
-                </div>
-                <div class="applicant-item"><!-- 샘플 데이터 -->
-                    <span>Park Ji-sung</span>
-                    <div class="applicant-buttons">
-                    	<button class="detail-btn">자세히보기</button>
-                        <button class="approve-btn">승인</button>
-                        <button class="reject-btn">거절</button>
-                    </div>
-                </div>
+                <c:forEach var="teamMember" items="${myTeam.teamMembers}">
+                    <c:if test="${teamMember.applicationStatus eq 'PENDING'}">
+                        <div class="applicant-item"><!-- 샘플 데이터 -->
+                            <span>${teamMember.member.nickname}</span>
+                            <div class="applicant-buttons">
+                                <button class="detail-btn">자세히보기</button>
+                                <form id="hiddenForm1" style="display: inline" action="/team-members/approve" method="POST">
+                                    <!-- 요청 본문 데이터 -->
+                                    <input type="hidden" name="memberId" value="${teamMember.member.id}">
+                                    <input type="hidden" name="teamId" value="${teamMember.team.id}">
+
+                                    <input type="submit" value="승인" class="approve-btn">
+                                </form>
+                                <form id="hiddenForm2" style="display: inline" action="/team-members/reject" method="POST">
+                                    <!-- 요청 본문 데이터 -->
+                                    <input type="hidden" name="memberId" value="${teamMember.member.id}">
+                                    <input type="hidden" name="teamId" value="${teamMember.team.id}">
+
+                                    <input type="submit" value="거절" class="reject-btn">
+                                </form>
+                            </div>
+                        </div>
+                    </c:if>
+                </c:forEach>
             </div>
         </div>
-        </c:if>
+    </c:if>
 
-        <c:if test="${not myTeam.isHost}">
-            <div>
-                <h3>참여자 목록</h3>
-                <div class="applicant-list">
+    <div>
+        <h3>참여자 목록</h3>
+        <div class="applicant-list">
+            <c:forEach var="teamMember" items="${myTeam.teamMembers}">
+                <c:if test="${teamMember.applicationStatus eq 'APPROVED'}">
                     <div class="applicant-item"><!-- 샘플 데이터 -->
-                        <span>Hong Gil-dong</span>
+                        <span>${teamMember.member.nickname}</span>
                         <div class="applicant-buttons">
                             <button class="detail-btn">자세히보기</button>
                         </div>
                     </div>
-                    <div class="applicant-item"><!-- 샘플 데이터 -->
-                        <span>Son Heung-min</span>
-                        <div class="applicant-buttons">
-                            <button class="detail-btn">자세히보기</button>
-                        </div>
-                    </div>
-                    <div class="applicant-item"><!-- 샘플 데이터 -->
-                        <span>Park Ji-sung</span>
-                        <div class="applicant-buttons">
-                            <button class="detail-btn">자세히보기</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </c:if>
-
-        <!-- 댓글 창 -->
-        <div class="comment-section">
-            <h3>소통 창구</h3>
-            <div class="comment-box">
-                <div class="comment-item"><!-- 샘플 데이터 -->
-                	<span class="comment-at">2024-11-21 16:55</span>
-			        <span class="nickname">Choi:</span>
-			        <span class="message">안녕하세요!</span>
-                </div>
-                <div class="comment-item"><!-- 샘플 데이터 -->
-                	<span class="comment-at">2024-11-21 16:58</span>
-                	<span class="nickname">Song:</span>
-			        <span class="message">반갑습니다.</span>
-                </div>
-            </div>
-            <form method="post" action="/team-members/${teamId}" >
-                <div class="comment-form">
-                    <input type="text" id="chat" name="chat" placeholder="댓글을 입력하세요">
-                    <input class="submit-btn" type="submit" value="등록">
-                </div>
-            </form>
+                </c:if>
+            </c:forEach>
         </div>
     </div>
-    
-    <!-- 하단 네비게이션 바 -->
-    <nav>
-        <ul>
-            <li><a href="/team-members/my-teams">&nbsp;&nbsp;&nbsp;내 팀&nbsp;&nbsp;&nbsp;</a></li>
-            <li><a href="/">홈</a></li>
-            <li><a href="/apply-page">지원 현황</a></li>
-        </ul>
-    </nav>
+
+    <!-- 댓글 창 -->
+    <div class="comment-section">
+        <h3>소통 창구</h3>
+        <div class="comment-box">
+            <div class="comment-item"><!-- 샘플 데이터 -->
+                <span class="comment-at">2024-11-21 16:55</span>
+                <span class="nickname">Choi:</span>
+                <span class="message">안녕하세요!</span>
+            </div>
+            <div class="comment-item"><!-- 샘플 데이터 -->
+                <span class="comment-at">2024-11-21 16:58</span>
+                <span class="nickname">Song:</span>
+                <span class="message">반갑습니다.</span>
+            </div>
+        </div>
+        <form method="post" action="/team-members/${teamId}">
+            <div class="comment-form">
+                <input type="text" id="chat" name="chat" placeholder="댓글을 입력하세요">
+                <input class="submit-btn" type="submit" value="등록">
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 하단 네비게이션 바 -->
+<nav>
+    <ul>
+        <li><a href="/team-members/my-teams">&nbsp;&nbsp;&nbsp;내 팀&nbsp;&nbsp;&nbsp;</a></li>
+        <li><a href="/">홈</a></li>
+        <li><a href="/apply-page">지원 현황</a></li>
+    </ul>
+</nav>
 </body>
 </html>

@@ -6,13 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.mapping.ToOne;
 
 @Entity
 @Getter
@@ -45,7 +44,11 @@ public class Team {
         this.numberOfParticipant = 1;
     }
 
-    public void participate(){
+    public void participateOne(){
         this.numberOfParticipant++;
+    }
+
+    public boolean isHost(Long memberId){
+        return Objects.equals(hostMember.getId(), memberId);
     }
 }

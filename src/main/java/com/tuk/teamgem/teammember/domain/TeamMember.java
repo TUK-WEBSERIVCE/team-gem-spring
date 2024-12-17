@@ -45,4 +45,12 @@ public class TeamMember {
         this.introduction = introduction;
         this.applicationStatus = applicationStatus;
     }
+
+    public void approve(){
+        applicationStatus = ApplicationStatus.APPROVED;
+    }
+
+    public void reject(){
+        applicationStatus = ApplicationStatus.REJECTED;
+    }
 }

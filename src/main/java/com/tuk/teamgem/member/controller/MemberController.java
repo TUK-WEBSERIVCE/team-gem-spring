@@ -27,7 +27,7 @@ public class MemberController {
         }catch (IllegalStateException e){
             return "duplicationLoginId";
         }
-        return "mainPage";
+        return "redirect:/";
     }
 
     @PostMapping("/login")
@@ -40,7 +40,7 @@ public class MemberController {
         Cookie cookie = new Cookie("memberId", loginResponse.memberId().toString());
         cookie.setPath("/");
         response.addCookie(cookie);
-        return "mainPage";
+        return "redirect:/";
     }
 
     @GetMapping("/register-form")
