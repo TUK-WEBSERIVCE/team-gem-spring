@@ -177,29 +177,52 @@
     	<div class="table-border">
         	<table>
 	            <tbody><!-- 샘플 데이터 -->
+<%--				<td>${team.id}</td>--%>
+<%--				<td><a href="/detailTeam-page?id=${team.id}">${team.name}</a></td>--%>
+<%--				<td>2/${team.capacity}</td>--%>
+<%--				<td>${team.field}</td>--%>
+<%--				<td>--%>
+<%--					<span class="status" data-duedate="${team.dueDate}"></span>--%>
+<%--				</td>--%>
+<%--				<td>${team.dueDate}</td>--%>
 	                <tr>
 	                    <th class="th-style">제목</th>
-	                    <td>프로젝트 C</td>
+	                    <td>${team.name}</td>
 	                </tr>
 	                <tr>
 	                    <th>모집 인원</th>
-	                    <td>0/5</td>
+	                    <td>0/${team.capacity}</td>
 	                </tr>
 	                <tr>
 	                    <th>분야</th>
-	                    <td>백엔드 개발</td>
+	                    <td>${team.field}</td>
 	                </tr>
 	                <tr>
 	                    <th>마감 여부</th>
-	                    <td class="status-open">모집중</td>
+	                    <td class="status-open"><span class="status" data-duedate="${team.dueDate}"></span></td>
 	                </tr>
 	                <tr>
 	                    <th>마감일</th>
-	                    <td>2024.11.12 오후 11:59</td>
+	                    <td>${team.dueDate}</td>
 	                </tr>
 	            </tbody>
 	        </table>
         </div>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				const now = new Date();
+				document.querySelectorAll('.status').forEach(function(statusElement) {
+					const dueDate = new Date(statusElement.dataset.duedate);
+					if (dueDate > now) {
+						statusElement.textContent = '모집중';
+						statusElement.classList.add('status-open');
+					} else {
+						statusElement.textContent = '종료';
+						statusElement.classList.add('status-closed');
+					}
+				});
+			});
+		</script>
         <div class="project-description"><!-- 샘플 데이터 -->
             <strong>프로젝트 설명:</strong> <br>
             백엔드 개발자 모집중입니다.
