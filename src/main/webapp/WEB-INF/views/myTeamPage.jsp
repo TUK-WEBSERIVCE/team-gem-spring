@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -198,6 +199,7 @@
         <div class="main-title">프로젝트 이름</div><!-- 샘플 데이터 -->
         <hr>
 
+        <c:if test="${myTeam.isHost}">
         <div>
             <h3>지원자 목록</h3>
             <div class="applicant-list">
@@ -227,6 +229,33 @@
                 </div>
             </div>
         </div>
+        </c:if>
+
+        <c:if test="${not myTeam.isHost}">
+            <div>
+                <h3>참여자 목록</h3>
+                <div class="applicant-list">
+                    <div class="applicant-item"><!-- 샘플 데이터 -->
+                        <span>Hong Gil-dong</span>
+                        <div class="applicant-buttons">
+                            <button class="detail-btn">자세히보기</button>
+                        </div>
+                    </div>
+                    <div class="applicant-item"><!-- 샘플 데이터 -->
+                        <span>Son Heung-min</span>
+                        <div class="applicant-buttons">
+                            <button class="detail-btn">자세히보기</button>
+                        </div>
+                    </div>
+                    <div class="applicant-item"><!-- 샘플 데이터 -->
+                        <span>Park Ji-sung</span>
+                        <div class="applicant-buttons">
+                            <button class="detail-btn">자세히보기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:if>
 
         <!-- 댓글 창 -->
         <div class="comment-section">

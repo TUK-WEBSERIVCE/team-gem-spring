@@ -42,9 +42,4 @@ public class TeamMemberController {
         model.addAttribute("myTeams",myTeams);
         return "myTeamList";
     }
-
-    @GetMapping("/my-team")
-    public String myTeam(){
-        teamMemberService.findMyTeam();
-    }
 }

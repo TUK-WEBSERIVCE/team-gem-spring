@@ -42,7 +42,9 @@ public class TeamMemberService {
         return teamMemberRepository.findAllByMember(member);
     }
 
-    public void findMyTeam(){
-        
+    public void findMyTeam(Long teamId, Long memberId){
+        Team team = teamService.getTeam(teamId);
+        List<TeamMember> teamMembers = teamMemberRepository.findByTeam(team);
+
     }
 }

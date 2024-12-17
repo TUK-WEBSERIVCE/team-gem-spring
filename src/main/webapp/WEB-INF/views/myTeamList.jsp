@@ -156,7 +156,7 @@
             <c:forEach var="myTeam" items="${myTeams}">
                 <tr>
                     <td>${myTeam.id}</td>
-                    <td><a href="/myTeam-page">${myTeam.team.name}</a></td>
+                    <td><a href="/team-members/my-team/${myTeam.team.id}">${myTeam.team.name}</a></td>
                     <td>${myTeam.team.numberOfParticipant}/${myTeam.team.capacity}</td>
                     <td>${myTeam.team.field}</td>
                     <td>
