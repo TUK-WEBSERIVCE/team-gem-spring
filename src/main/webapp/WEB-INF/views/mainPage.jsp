@@ -143,6 +143,35 @@
         margin: 0;
         padding: 0;
       }
+
+      /* Pagination 스타일 */
+      .pagination {
+          display: flex;
+          justify-content: center;
+          margin: 20px 0;
+          font-family: Arial, sans-serif;
+      }
+
+      .pagination a, .pagination span {
+          margin: 0 5px;
+          padding: 8px 12px;
+          text-decoration: none;
+          border: 1px solid #ddd;
+          color: #007bff;
+          border-radius: 4px;
+      }
+
+      .pagination a:hover {
+          background-color: #007bff;
+          color: white;
+      }
+
+      .pagination .current-page {
+          font-weight: bold;
+          background-color: #007bff;
+          color: white;
+          border: none;
+      }
     </style>
 </head>
 <body>
@@ -204,8 +233,50 @@
     });
   });
 </script>
+
 <div class="button-container">
     <button onclick="location.href='/registerMember-page'">모집하기</button>
+</div>
+
+<!-- Pagination -->
+<div class="pagination">
+    <!-- 첫 페이지 및 이전 페이지 링크 -->
+    <c:if test="${currentPage > 1}">
+        <a href="?page=0" aria-label="First Page">&laquo;</a> <!-- 첫 페이지 -->
+        <a href="?page=${currentPage - 2}" aria-label="Previous Page">&lt;</a> <!-- 이전 페이지 -->
+    </c:if>
+
+    <!-- 동적 페이지 번호 생성 -->
+    <c:set var="startPage" value="${currentPage - 3}" />
+    <c:set var="endPage" value="${currentPage + 3}" />
+
+    <!-- 시작 페이지가 1보다 작으면 조정 -->
+    <c:if test="${startPage < 1}">
+        <c:set var="startPage" value="1" />
+    </c:if>
+
+    <!-- 종료 페이지가 totalPages보다 크면 조정 -->
+    <c:if test="${endPage > totalPages}">
+        <c:set var="endPage" value="${totalPages}" />
+    </c:if>
+
+    <!-- 페이지 번호 반복 -->
+    <c:forEach var="page" begin="${startPage}" end="${endPage}">
+        <c:choose>
+            <c:when test="${page == currentPage}">
+                <span class="current-page">${page}</span> <!-- 현재 페이지 -->
+            </c:when>
+            <c:otherwise>
+                <a href="?page=${page - 1}" aria-label="Go to page ${page}">${page}</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+
+    <!-- 다음 페이지 및 마지막 페이지 링크 -->
+    <c:if test="${currentPage < totalPages}">
+        <a href="?page=${currentPage}" aria-label="Next Page">&gt;</a> <!-- 다음 페이지 -->
+        <a href="?page=${totalPages - 1}" aria-label="Last Page">&raquo;</a> <!-- 마지막 페이지 -->
+    </c:if>
 </div>
 
 <!-- 하단 네비게이션 바 -->

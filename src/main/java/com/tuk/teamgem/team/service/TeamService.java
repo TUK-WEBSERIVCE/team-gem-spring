@@ -13,6 +13,9 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 @Service
 @RequiredArgsConstructor
@@ -49,5 +52,9 @@ public class TeamService {
 
     public Team getTeam(Long teamId){
         return teamRepository.findById(teamId).orElseThrow(()->new RuntimeException("없는 팀"));
+    }
+
+    public Page<Team> getTeams(Pageable pageable) {
+        return teamRepository.findAll(pageable);
     }
 }

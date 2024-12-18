@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -25,9 +30,14 @@ public class TeamController {
     }
 
     @GetMapping
-    public String getTeams(Model model){
-        List<Team> teams = teamService.getTeams();
-        model.addAttribute("teams",teams);
+    public String getTeams(@RequestParam(defaultValue = "0") int page, Model model) {
+        int itemsPerPage = 6; // 페이지당 데이터 개수
+        Pageable pageable = PageRequest.of(page, itemsPerPage);
+        Page<Team> teamPage = teamService.getTeams(pageable);
+
+        model.addAttribute("teams", teamPage.getContent());
+        model.addAttribute("currentPage", page + 1); // 현재 페이지 (1부터 시작)
+        model.addAttribute("totalPages", teamPage.getTotalPages());
         return "mainPage";
     }
 
