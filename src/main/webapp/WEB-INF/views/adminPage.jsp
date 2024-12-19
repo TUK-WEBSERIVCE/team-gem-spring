@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>지원 현황</title>
+    <title>관리자 페이지</title>
     <style>
         body {  /* body 태그 전체 */
             font-family: Arial, sans-serif;
@@ -57,38 +56,54 @@
             padding: 20px;
         }
 
-        .apply-list {
-            background-color: #D6F4FF;
-            padding: 10px;
-            border-radius: 5px;
-            align-items: center; /* 상하 중앙 정렬 */
+        .small-container {
+            display: flex;
+            justify-content: space-between; /* 자식 요소 간 간격 설정 */
+            gap: 20px; /* 요소 사이 간격 */
         }
 
-        .apply-item {
+        .list-container {
+            width: 45%;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .list-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .container li {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 20px;
-            padding: 5px 0;
-            border-bottom: 1px solid #ddd;
-            font-weight: bold;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            background-color: #fff;
         }
 
-        .apply-item span {
-            font-size: 1.5em;
+        .delete-button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9em;
         }
 
-        .apply-item .waitingStatus {
-            font-size: 1.2em;
-            color: black;
-        }
-        .apply-item .okStatus {
-            font-size: 1.2em;
-            color: green;
-        }
-        .apply-item .noStatus {
-            font-size: 1.2em;
-            color: red;
+        .delete-button:hover {
+            background-color: #cc0000;
         }
 
         .divider {  /* 로그인, 회원가입 구분자를 위한 클래스 */
@@ -105,6 +120,7 @@
             position: fixed;
             bottom: 0;
         }
+
         nav ul {  /* nav 태그 내 ul 태그 */
             list-style-type: none;
             display: flex;
@@ -124,28 +140,31 @@
     </div>
 </header>
 <div class="container">
-    <div class="main-title">지원 현황</div>
+    <div class="main-title">관리</div>
     <hr>
+    <!-- 회원 목록 -->
+    <div class="small-container">
+        <div class="list-container">
+            <div class="list-title">회원 목록</div>
+            <ul>
+                <li>ID 1 <button class="delete-button">X</button></li>
+                <li>ID 2 <button class="delete-button">X</button></li>
+                <li>ID 3 <button class="delete-button">X</button></li>
+                <li>ID 4 <button class="delete-button">X</button></li>
+            </ul>
+        </div>
 
-    <div>
-        <c:forEach var="application" items="${applications}">
-            <div class="apply-list">
-                <div class="apply-item">
-                    <span>${application.team.name}</span>
-                    <c:if test="${application.applicationStatus == 'PENDING'}">
-                        <div class="waitingStatus">대기</div>
-                    </c:if>
-                    <c:if test="${application.applicationStatus == 'APPROVED'}">
-                        <div class="okStatus">승인</div>
-                    </c:if>
-                    <c:if test="${application.applicationStatus == 'REJECTED'}">
-                        <div class="noStatus">거절</div>
-                    </c:if>
-                </div>
-            </div>
-        </c:forEach>
+        <!-- 팀 목록 -->
+        <div class="list-container">
+            <div class="list-title">팀 목록</div>
+            <ul>
+                <li>ID 1 <button class="delete-button">X</button></li>
+                <li>ID 2 <button class="delete-button">X</button></li>
+                <li>ID 3 <button class="delete-button">X</button></li>
+                <li>ID 4 <button class="delete-button">X</button></li>
+            </ul>
+        </div>
     </div>
-
 </div>
 
 <!-- 하단 네비게이션 바 -->

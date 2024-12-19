@@ -23,4 +23,7 @@ public class PageController {
 
     @GetMapping("/myTeam-page") // 내 팀 페이지
     public String myTeam() { return "myTeamPage"; }
+
+    @GetMapping("/admin-page")  // 관리자 페이지
+    public String admin() { return "adminPage"; }
 }
