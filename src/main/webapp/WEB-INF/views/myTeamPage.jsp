@@ -144,6 +144,7 @@
       .comment-form {
         margin-top: 10px;
         width: 100%;
+        margin-bottom: 20px;
       }
 
       .comment-form input {
@@ -276,7 +277,7 @@
         <form method="post" action="/comment">
             <div class="comment-form">
                 <input type="hidden" name="teamId" value="${myTeam.teamMembers.get(0).team.id}">
-                <input type="text" id="content" name="content" placeholder="댓글을 입력하세요">
+                <input type="text" id="content" name="content" placeholder="댓글을 입력하세요" required>
                 <input class="submit-btn" type="submit" value="등록">
             </div>
         </form>

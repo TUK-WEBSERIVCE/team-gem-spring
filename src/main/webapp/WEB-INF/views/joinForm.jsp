@@ -143,10 +143,10 @@
 		<form method="post" action="/team-members/${teamId}" >
 			<div class="form-group">
 				<label for="field">지원 분야</label>
-				<input type="text" id="field" name="field" placeholder="지원 분야를 입력해주세요.">
+				<input type="text" id="field" name="field" placeholder="지원 분야를 입력해주세요." required>
 				<br><br>
 				<label for="introduction">자기소개</label>
-				<textarea id="introduction" name="introduction" rows="6" placeholder="자기소개를 입력해주세요."></textarea>
+				<textarea id="introduction" name="introduction" rows="6" placeholder="자기소개를 입력해주세요." required></textarea>
 
 				<div class="button-container">
 					<input type="submit" value="참여하기">
