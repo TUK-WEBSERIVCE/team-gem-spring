@@ -211,7 +211,7 @@
 </header>
 
 <div class="container">
-    <div class="main-title">프로젝트 이름</div><!-- 샘플 데이터 -->
+    <div class="main-title">프로젝트 이름</div>
     <hr>
 
     <c:if test="${myTeam.isHost}">
@@ -220,7 +220,7 @@
             <div class="applicant-list">
                 <c:forEach var="teamMember" items="${myTeam.teamMembers}">
                     <c:if test="${teamMember.applicationStatus eq 'PENDING'}">
-                        <div class="applicant-item"><!-- 샘플 데이터 -->
+                        <div class="applicant-item">
                             <span>${teamMember.member.nickname}</span>
                             <div class="applicant-buttons">
                                 <button class="detail-btn" onclick="toggleDetails(${teamMember.id})">자세히보기</button>
