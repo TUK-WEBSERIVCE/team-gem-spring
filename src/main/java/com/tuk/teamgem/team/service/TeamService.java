@@ -1,5 +1,6 @@
 package com.tuk.teamgem.team.service;
 
+import com.tuk.teamgem.comment.repository.CommentRepository;
 import com.tuk.teamgem.member.domain.Member;
 import com.tuk.teamgem.member.service.MemberService;
 import com.tuk.teamgem.team.domain.Team;
@@ -8,14 +9,12 @@ import com.tuk.teamgem.team.repository.TeamRepository;
 import com.tuk.teamgem.teammember.domain.ApplicationStatus;
 import com.tuk.teamgem.teammember.domain.TeamMember;
 import com.tuk.teamgem.teammember.repository.TeamMemberRepository;
-import com.tuk.teamgem.teammember.service.TeamMemberService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 @Service
 @RequiredArgsConstructor
@@ -25,9 +24,10 @@ public class TeamService {
     private final TeamRepository teamRepository;
     private final MemberService memberService;
     private final TeamMemberRepository teamMemberRepository;
+    private final CommentRepository commentRepository;
 
     @Transactional
-    public void register(TeamRegisterRequest request,Long memberId){
+    public void register(TeamRegisterRequest request, Long memberId) {
         Member member = memberService.getMember(memberId);
         Team team = Team.builder()
             .capacity(request.capacity())
@@ -46,19 +46,26 @@ public class TeamService {
         teamRepository.save(team);
     }
 
-    public List<Team> getTeams(){
+    public List<Team> getTeams() {
         return teamRepository.findAll();
     }
 
-    public Team getTeam(Long teamId){
-        return teamRepository.findById(teamId).orElseThrow(()->new RuntimeException("없는 팀"));
+    public Team getTeam(Long teamId) {
+        return teamRepository.findById(teamId).orElseThrow(() -> new RuntimeException("없는 팀"));
     }
 
     public Page<Team> getTeams(Pageable pageable) {
         return teamRepository.findAll(pageable);
     }
 
-    public List<Team> getAllTeam(){
+    public List<Team> getAllTeam() {
         return teamRepository.findAll();
+    }
+
+    @Transactional
+    public void deleteTeam(Long teamId) {
+        commentRepository.deleteAllTeamId(teamId);
+        teamMemberRepository.deleteAllByTeamId(teamId);
+        teamRepository.deleteById(teamId);
     }
 }

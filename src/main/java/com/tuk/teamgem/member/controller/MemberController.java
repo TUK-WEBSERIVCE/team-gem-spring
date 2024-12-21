@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -56,5 +57,11 @@ public class MemberController {
             session.invalidate();
         }
         return "redirect:/";
+    }
+
+    @DeleteMapping("/{memberId}")
+    public String deleteMember(@PathVariable Long memberId){
+        memberService.deleteMember(memberId);
+        return "redirect:/admin";
     }
 }

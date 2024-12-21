@@ -7,6 +7,7 @@ import com.tuk.teamgem.teammember.domain.TeamMember;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 public interface TeamMemberRepository extends JpaRepository<TeamMember,Long> {
@@ -22,4 +23,8 @@ public interface TeamMemberRepository extends JpaRepository<TeamMember,Long> {
     List<TeamMember> findByTeam(Team team);
 
     Optional<TeamMember> findByMemberAndTeam(Member member,Team team);
+
+    @Modifying
+    @Query("delete from TeamMember tm where tm.team.id = :teamId")
+    void deleteAllByTeamId(Long teamId);
 }

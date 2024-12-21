@@ -24,10 +24,10 @@ public class AdminController {
     @GetMapping
     public String admin(@SessionAttribute(name = "memberId")Long memberId, Model model){
         memberService.isAdmin(memberId);
-        List<Member> allMember = memberService.getAllMember();
-        List<Team> allTeam = teamService.getAllTeam();
-        AdminManageResponse adminManageResponse = new AdminManageResponse(allMember, allTeam);
-        model.addAttribute(adminManageResponse);
+        List<Member> members = memberService.getAllMember();
+        List<Team> teams = teamService.getAllTeam();
+        AdminManageResponse adminManageResponse = new AdminManageResponse(members, teams);
+        model.addAttribute("res",adminManageResponse);
         return "adminPage";
     }
 }
