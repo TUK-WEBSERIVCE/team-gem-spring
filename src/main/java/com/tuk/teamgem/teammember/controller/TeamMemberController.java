@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,7 +29,7 @@ public class TeamMemberController {
 
     @PostMapping("/{teamId}")
     public String joinRequest(
-        @CookieValue Long memberId,
+        @SessionAttribute(name = "memberId") Long memberId,
         @PathVariable Long teamId,
         TeamJoinRequest teamJoinRequest){
         teamMemberService.joinRequest(memberId,teamId,teamJoinRequest);
@@ -36,20 +37,20 @@ public class TeamMemberController {
     }
 
     @GetMapping("/join/{teamId}")
-    public String joinForm(Model model,@PathVariable Long teamId){
+    public String joinForm(Model model,@PathVariable Long teamId,@SessionAttribute(name = "memberId") Long memberId){
         model.addAttribute("teamId",teamId);
         return "joinForm";
     }
 
     @GetMapping("/my-teams")
-    public String myTeams(Model model,@CookieValue Long memberId){
+    public String myTeams(Model model,@SessionAttribute(name = "memberId") Long memberId){
         List<TeamMember> myTeams = teamMemberService.findMyTeams(memberId);
         model.addAttribute("myTeams",myTeams);
         return "myTeamList";
     }
 
     @GetMapping("/my-team/{teamId}")
-    public String myTeam(@PathVariable Long teamId,@CookieValue Long memberId,Model model){
+    public String myTeam(@PathVariable Long teamId,@SessionAttribute(name = "memberId") Long memberId,Model model){
         MyTeamResponse myTeam = teamMemberService.findMyTeam(teamId, memberId);
         model.addAttribute("myTeam",myTeam);
         return "myTeamPage";
@@ -70,7 +71,7 @@ public class TeamMemberController {
     }
 
     @GetMapping("/application")
-    public String applicationStatus(@CookieValue Long memberId, Model model){
+    public String applicationStatus(@SessionAttribute(name = "memberId") Long memberId, Model model){
         List<TeamMember> applications = teamMemberService.findApplication(memberId);
         model.addAttribute("applications",applications);
         return "applyStatusPage";

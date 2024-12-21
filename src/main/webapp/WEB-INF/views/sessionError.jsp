@@ -148,31 +148,31 @@
 
       /* Pagination 스타일 */
       .pagination {
-          display: flex;
-          justify-content: center;
-          margin-bottom: 20px;
-          font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        font-family: Arial, sans-serif;
       }
 
       .pagination a, .pagination span {
-          margin: 0 5px;
-          padding: 8px 12px;
-          text-decoration: none;
-          border: 1px solid #ddd;
-          color: #007bff;
-          border-radius: 4px;
+        margin: 0 5px;
+        padding: 8px 12px;
+        text-decoration: none;
+        border: 1px solid #ddd;
+        color: #007bff;
+        border-radius: 4px;
       }
 
       .pagination a:hover {
-          background-color: #007bff;
-          color: white;
+        background-color: #007bff;
+        color: white;
       }
 
       .pagination .current-page {
-          font-weight: bold;
-          background-color: #007bff;
-          color: white;
-          border: none;
+        font-weight: bold;
+        background-color: #007bff;
+        color: white;
+        border: none;
       }
     </style>
 </head>
@@ -188,109 +188,53 @@
         %>
         <!-- 세션에 사용자 정보가 있으면 로그아웃 링크 표시 -->
         <% if (memberId != null) { %>
-            <a href="/member/logout" style="margin-right: 30px;">로그아웃</a>
+        <a href="/member/logout" style="margin-right: 30px;">로그아웃</a>
         <% } else { %>
         <!-- 세션에 사용자 정보가 없으면 로그인 및 회원가입 링크 표시 -->
-            <a href="/login-page">로그인</a>
-            <span class="divider">|</span>
-            <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
+        <a href="/login-page">로그인</a>
+        <span class="divider">|</span>
+        <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
         <% } %>
     </div>
 </header>
 
-<div class="container">
-    <div class="main-title">지원 가능한 팀 목록</div>
-    <hr>
-    <div class="table-border">
-        <table>
-            <thead>
-            <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>모집 인원</th>
-                <th>분야</th>
-                <th>마감 여부</th>
-                <th>마감일</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="team" items="${teams}">
-                <tr>
-                    <td>${team.id}</td>
-                    <td><a href="/team/${team.id}">${team.name}</a></td>
-                    <td>${team.numberOfParticipant}/${team.capacity}</td>
-                    <td>${team.field}</td>
-                    <td>
-                        <span class="status" data-duedate="${team.dueDate}"></span>
-                    </td>
-                    <td>${team.dueDate}</td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-    </div>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const now = new Date();
-        document.querySelectorAll('.status').forEach(function(statusElement) {
-          const dueDate = new Date(statusElement.dataset.duedate);
-          if (dueDate > now) {
-            statusElement.textContent = '모집중';
-            statusElement.classList.add('status-open');
-          } else {
-            statusElement.textContent = '종료';
-            statusElement.classList.add('status-closed');
-          }
-        });
-      });
-    </script>
-
-    <div class="button-container">
-        <button onclick="location.href='/registerMember-page'">모집하기</button>
-    </div>
-
+<!-- 경고 메시지 박스 -->
+<div class="alert-box">
+    <p>로그인이 필요합니다. <a href="/login-page">로그인</a> 페이지로 이동해주세요.</p>
 </div>
 
-<!-- Pagination -->
-<div class="pagination">
-    <!-- 첫 페이지 및 이전 페이지 링크 -->
-    <c:if test="${currentPage > 1}">
-        <a href="?page=0" aria-label="First Page">&laquo;</a> <!-- 첫 페이지 -->
-        <a href="?page=${currentPage - 2}" aria-label="Previous Page">&lt;</a> <!-- 이전 페이지 -->
-    </c:if>
+<style>
+  .alert-box {
+    width: 80%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 15px 20px;
+    background-color: #ffdddd; /* 연한 빨간 배경 */
+    color: #d8000c; /* 경고 빨간 글씨 */
+    border: 1px solid #d8000c; /* 경고 빨간 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    font-family: Arial, sans-serif; /* 글꼴 */
+    text-align: center; /* 중앙 정렬 */
+    font-size: 1.2em; /* 적당히 큰 글씨 크기 */
+  }
 
-    <!-- 동적 페이지 번호 생성 -->
-    <c:set var="startPage" value="${currentPage - 3}" />
-    <c:set var="endPage" value="${currentPage + 3}" />
+  .alert-box p {
+    margin: 0; /* p 태그 여백 제거 */
+  }
 
-    <!-- 시작 페이지가 1보다 작으면 조정 -->
-    <c:if test="${startPage < 1}">
-        <c:set var="startPage" value="1" />
-    </c:if>
+  .alert-box a {
+    color: #d8000c; /* 빨간 글씨 */
+    text-decoration: underline; /* 밑줄 */
+    font-weight: bold; /* 굵은 글씨 */
+  }
 
-    <!-- 종료 페이지가 totalPages보다 크면 조정 -->
-    <c:if test="${endPage > totalPages}">
-        <c:set var="endPage" value="${totalPages}" />
-    </c:if>
+  .alert-box a:hover {
+    text-decoration: none; /* 마우스 오버 시 밑줄 제거 */
+  }
+</style>
 
-    <!-- 페이지 번호 반복 -->
-    <c:forEach var="page" begin="${startPage}" end="${endPage}">
-        <c:choose>
-            <c:when test="${page == currentPage}">
-                <span class="current-page">${page}</span> <!-- 현재 페이지 -->
-            </c:when>
-            <c:otherwise>
-                <a href="?page=${page - 1}" aria-label="Go to page ${page}">${page}</a>
-            </c:otherwise>
-        </c:choose>
-    </c:forEach>
 
-    <!-- 다음 페이지 및 마지막 페이지 링크 -->
-    <c:if test="${currentPage < totalPages}">
-        <a href="?page=${currentPage}" aria-label="Next Page">&gt;</a> <!-- 다음 페이지 -->
-        <a href="?page=${totalPages - 1}" aria-label="Last Page">&raquo;</a> <!-- 마지막 페이지 -->
-    </c:if>
-</div>
 
 <!-- 하단 네비게이션 바 -->
 <nav>

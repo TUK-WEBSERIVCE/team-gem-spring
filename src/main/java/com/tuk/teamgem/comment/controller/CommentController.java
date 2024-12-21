@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 @RequestMapping("/comment")
@@ -17,7 +18,8 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping
-    public String saveComment(HttpServletRequest httpServletRequest, @CookieValue Long memberId,
+    public String saveComment(HttpServletRequest httpServletRequest,
+        @SessionAttribute(name = "memberId") Long memberId,
         CommentSaveRequest request){
         String referer = httpServletRequest.getHeader("Referer");
         commentService.saveComment(memberId,request);

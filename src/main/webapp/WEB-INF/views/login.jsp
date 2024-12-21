@@ -128,9 +128,19 @@
     <header>
         <a class="page-title" href="/"><div class="" style="color: #0082CC;">TUK&nbsp;</div>Team Gem</a>
         <div class="account-container">
+            <%
+                HttpSession memberSession = request.getSession(false);
+                Object memberId = memberSession.getAttribute("memberId");
+            %>
+            <!-- 세션에 사용자 정보가 있으면 로그아웃 링크 표시 -->
+            <% if (memberId != null) { %>
+            <a href="/member/logout" style="margin-right: 30px;">로그아웃</a>
+            <% } else { %>
+            <!-- 세션에 사용자 정보가 없으면 로그인 및 회원가입 링크 표시 -->
             <a href="/login-page">로그인</a>
             <span class="divider">|</span>
             <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
+            <% } %>
         </div>
     </header>
 

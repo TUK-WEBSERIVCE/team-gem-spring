@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 
 @Controller
@@ -24,7 +25,7 @@ public class TeamController {
     private final TeamService teamService;
 
     @PostMapping("/team")
-    public String register(TeamRegisterRequest request,@CookieValue Long memberId){
+    public String register(TeamRegisterRequest request,@SessionAttribute(name = "memberId") Long memberId){
         teamService.register(request,memberId);
         return "redirect:/";
     }
@@ -40,6 +41,7 @@ public class TeamController {
         model.addAttribute("totalPages", teamPage.getTotalPages());
         return "mainPage";
     }
+
 
     @GetMapping("/team/{teamId}")
     public String getTeam(@PathVariable Long teamId, Model model){
