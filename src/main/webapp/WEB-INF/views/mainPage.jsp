@@ -54,6 +54,7 @@
         width: 80%;
         margin: 20px auto;
         margin-top: 10px;
+        margin-bottom: 0;
         max-width: 1000px;
         padding: 20px;
 
@@ -106,10 +107,11 @@
         display: flex;
         justify-content: flex-end;
         margin: 0px auto;
+        margin-top: 20px;
       }
 
       .button-container button { /* container 클래스 내 button 태그 */
-        margin-right: 20%;
+        margin-right: 5%;
         padding: 10px 20px;
         background-color: #007bff;
         color: white;
@@ -148,7 +150,7 @@
       .pagination {
           display: flex;
           justify-content: center;
-          margin: 20px 0;
+          margin-bottom: 20px;
           font-family: Arial, sans-serif;
       }
 
@@ -180,9 +182,26 @@
         <div class="" style="color: #0082CC;">TUK&nbsp;</div>
         Team Gem</a>
     <div class="account-container">
-        <a href="/login-page">로그인</a>
-        <span class="divider">|</span>
-        <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
+        <%
+            Cookie[] cookies = request.getCookies();
+            String userId = null;
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if ("memberId".equals(cookie.getName())) {
+                        userId = cookie.getValue();
+                    }
+                }
+            }
+        %>
+        <!-- 세션에 사용자 정보가 있으면 로그아웃 링크 표시 -->
+        <% if (userId != null) { %>
+            <a href="/member/logout" style="margin-right: 30px;">로그아웃</a>
+        <% } else { %>
+        <!-- 세션에 사용자 정보가 없으면 로그인 및 회원가입 링크 표시 -->
+            <a href="/login-page">로그인</a>
+            <span class="divider">|</span>
+            <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
+        <% } %>
     </div>
 </header>
 
@@ -217,25 +236,26 @@
             </tbody>
         </table>
     </div>
-</div>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const now = new Date();
-    document.querySelectorAll('.status').forEach(function(statusElement) {
-      const dueDate = new Date(statusElement.dataset.duedate);
-      if (dueDate > now) {
-        statusElement.textContent = '모집중';
-        statusElement.classList.add('status-open');
-      } else {
-        statusElement.textContent = '종료';
-        statusElement.classList.add('status-closed');
-      }
-    });
-  });
-</script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const now = new Date();
+        document.querySelectorAll('.status').forEach(function(statusElement) {
+          const dueDate = new Date(statusElement.dataset.duedate);
+          if (dueDate > now) {
+            statusElement.textContent = '모집중';
+            statusElement.classList.add('status-open');
+          } else {
+            statusElement.textContent = '종료';
+            statusElement.classList.add('status-closed');
+          }
+        });
+      });
+    </script>
 
-<div class="button-container">
-    <button onclick="location.href='/registerMember-page'">모집하기</button>
+    <div class="button-container">
+        <button onclick="location.href='/registerMember-page'">모집하기</button>
+    </div>
+
 </div>
 
 <!-- Pagination -->

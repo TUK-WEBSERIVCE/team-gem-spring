@@ -134,9 +134,9 @@
 <header>
     <a class="page-title" href="/"><div class="" style="color: #0082CC;">TUK&nbsp;</div>Team Gem</a>
     <div class="account-container">
-        <a href="/login-page">로그인</a>
-        <span class="divider">|</span>
-        <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
+            <a href="/login-page">로그인</a>
+            <span class="divider">|</span>
+            <a href="/member/register-form" style="margin-right: 30px;">회원가입</a>
     </div>
 </header>
 <div class="container">
@@ -147,10 +147,8 @@
         <div class="list-container">
             <div class="list-title">회원 목록</div>
             <ul>
-                <li>ID 1 <button class="delete-button">X</button></li>
-                <li>ID 2 <button class="delete-button">X</button></li>
-                <li>ID 3 <button class="delete-button">X</button></li>
-                <li>ID 4 <button class="delete-button">X</button></li>
+                <li>1&nbsp;&nbsp;AAA<button class="delete-button">X</button></li>
+                <li>2&nbsp;&nbsp;BBB<button class="delete-button">X</button></li>
             </ul>
         </div>
 
@@ -158,10 +156,8 @@
         <div class="list-container">
             <div class="list-title">팀 목록</div>
             <ul>
-                <li>ID 1 <button class="delete-button">X</button></li>
-                <li>ID 2 <button class="delete-button">X</button></li>
-                <li>ID 3 <button class="delete-button">X</button></li>
-                <li>ID 4 <button class="delete-button">X</button></li>
+                <li>1&nbsp;&nbsp;AAA<button class="delete-button">X</button></li>
+                <li>2&nbsp;&nbsp;BBB<button class="delete-button">X</button></li>
             </ul>
         </div>
     </div>
