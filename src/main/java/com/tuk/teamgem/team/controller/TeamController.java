@@ -56,6 +56,7 @@ public class TeamController {
         int pageValue = page == null ? 0 : Integer.parseInt(page);
         request.setAttribute("page",pageValue);
         Team team = teamService.getTeam(teamId);
+        teamService.checkOutDated(team);
         model.addAttribute("team",team);
         return "detailTeamPage";
     }

@@ -54,7 +54,6 @@ public class TeamService {
 
     public Team getTeam(Long teamId) {
         Team team = teamRepository.findById(teamId).orElseThrow(() -> new RuntimeException("없는 팀"));
-        this.checkOutDated(team);
         return team;
     }
 
