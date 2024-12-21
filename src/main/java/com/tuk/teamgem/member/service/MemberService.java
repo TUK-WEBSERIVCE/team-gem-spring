@@ -33,14 +33,14 @@ public class MemberService {
 
     private void duplicationLoginId(String loginId){
         if(memberRepository.existsByLoginId(loginId)){
-            throw new RegisterException("중복된 아이디입니다.");
+            throw new RegisterException("중복된 아이디입니다😜");
         }
     }
 
     public LoginResponse login(LoginRequest request){
         Member member = memberRepository.findByLoginIdAndPassword(request.loginId(),
                 request.password())
-            .orElseThrow(() -> new LoginException("아이디와 비밀번호가 일치하지 않습니다."));
+            .orElseThrow(() -> new LoginException("아이디와 비밀번호가 일치하지 않습니다😕"));
         return new LoginResponse(member.getId());
     }
 

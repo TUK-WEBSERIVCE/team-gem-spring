@@ -87,7 +87,7 @@ public class TeamMemberService {
         Member member = memberService.getMember(memberId);
         boolean duplicationStatus = teamMemberRepository.existsByMemberAndTeam(member, team);
         if(duplicationStatus){
-            throw new DuplicationException("이미 참여 중 입니다.");
+            throw new DuplicationException("이미 참여 중 입니다.😨");
         }
     }
 }
