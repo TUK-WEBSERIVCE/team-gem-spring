@@ -1,6 +1,8 @@
 package com.tuk.teamgem.member.service;
 
 import com.tuk.teamgem.exception.AdminAuthenticationFailedException;
+import com.tuk.teamgem.exception.LoginException;
+import com.tuk.teamgem.exception.RegisterException;
 import com.tuk.teamgem.member.domain.Member;
 import com.tuk.teamgem.member.dto.LoginRequest;
 import com.tuk.teamgem.member.dto.LoginResponse;
@@ -31,14 +33,14 @@ public class MemberService {
 
     private void duplicationLoginId(String loginId){
         if(memberRepository.existsByLoginId(loginId)){
-            throw new IllegalStateException("중복된 아이디입니다.");
+            throw new RegisterException("중복된 아이디입니다.");
         }
     }
 
     public LoginResponse login(LoginRequest request){
         Member member = memberRepository.findByLoginIdAndPassword(request.loginId(),
                 request.password())
-            .orElseThrow(() -> new IllegalStateException("아이디와 비밀번호가 일치하지 않습니다."));
+            .orElseThrow(() -> new LoginException("아이디와 비밀번호가 일치하지 않습니다."));
         return new LoginResponse(member.getId());
     }
 
