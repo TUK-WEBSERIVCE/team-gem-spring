@@ -160,7 +160,7 @@
             <div class="list-title">회원 목록</div>
             <ul>
                 <c:forEach var="member" items="${res.members}">
-                    <li>${member.id}&nbsp;&nbsp;${member.nickname}
+                    <li>${member.id}&nbsp;&nbsp;&nbsp;&nbsp;${member.nickname}
                         <form action="/member/${member.id}" method="post">
                             <input type="hidden" name="_method" value="delete">
                             <button class="delete-button" type="submit">X</button>
@@ -175,7 +175,7 @@
             <div class="list-title">팀 목록</div>
             <ul>
                 <c:forEach var="team" items="${res.teams}">
-                    <li>${team.id}&nbsp;&nbsp;${team.name}
+                    <li>${team.id}&nbsp;&nbsp;&nbsp;&nbsp;${team.name}
                         <form action="/team/${team.id}" method="post">
                             <input type="hidden" name="_method" value="delete">
                             <button class="delete-button" type="submit">X</button>

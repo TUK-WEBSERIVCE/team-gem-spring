@@ -110,10 +110,11 @@
             display: flex;
             justify-content: flex-end;
             margin: 0px auto;
+			margin-top: 20px;
         }
 
         .button-container button {
-            margin-right: 20%;
+            margin-right: 5%;
             padding: 10px 20px;
             background-color: #007bff;
             color: white;
@@ -229,9 +230,9 @@
             <strong>프로젝트 설명:</strong> <br>
             ${team.description}
         </div>
-    </div>
-    <div class="button-container">
-        <button onclick="location.href='/team-members/join/${team.id}'">참여하기</button>
+		<div class="button-container">
+			<button onclick="location.href='/team-members/join/${team.id}'">참여하기</button>
+		</div>
     </div>
     
     <!-- 하단 네비게이션 바 -->
