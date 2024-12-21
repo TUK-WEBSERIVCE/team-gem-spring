@@ -57,4 +57,8 @@ public class TeamService {
     public Page<Team> getTeams(Pageable pageable) {
         return teamRepository.findAll(pageable);
     }
+
+    public List<Team> getAllTeam(){
+        return teamRepository.findAll();
+    }
 }

@@ -21,11 +21,21 @@ public class Member {
     private String loginId;
     private String password;
     private String nickname;
+    private Role role;
 
     @Builder
     public Member(final String loginId, final String password, final String nickname) {
         this.loginId = loginId;
         this.password = password;
         this.nickname = nickname;
+        if(password.equals("teamgem")){
+            this.role = Role.ADMIN;
+        }else{
+            this.role = Role.USER;
+        }
+    }
+
+    public boolean isAdmin(){
+        return this.role.equals(Role.ADMIN);
     }
 }

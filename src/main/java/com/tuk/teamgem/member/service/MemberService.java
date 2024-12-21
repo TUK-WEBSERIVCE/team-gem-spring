@@ -1,5 +1,6 @@
 package com.tuk.teamgem.member.service;
 
+import com.tuk.teamgem.exception.AdminAuthenticationFailedException;
 import com.tuk.teamgem.member.domain.Member;
 import com.tuk.teamgem.member.dto.LoginRequest;
 import com.tuk.teamgem.member.dto.LoginResponse;
@@ -8,6 +9,7 @@ import com.tuk.teamgem.member.dto.RegisterRequest;
 import com.tuk.teamgem.member.repository.MemberRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +45,17 @@ public class MemberService {
     public Member getMember(Long memberId){
         return memberRepository.findById(memberId).orElseThrow(()-> new IllegalArgumentException(
             "회원을 찾을 수 없습니다."));
+    }
+
+    public boolean isAdmin(Long memberId){
+        Member member = getMember(memberId);
+        if(!member.isAdmin()){
+            throw new AdminAuthenticationFailedException();
+        }
+        return true;
+    }
+
+    public List<Member> getAllMember(){
+        return memberRepository.findAll();
     }
 }
