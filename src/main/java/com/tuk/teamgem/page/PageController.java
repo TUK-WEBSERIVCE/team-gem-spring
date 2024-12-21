@@ -1,12 +1,17 @@
 package com.tuk.teamgem.page;
 
+import com.tuk.teamgem.teammember.service.TeamMemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
+@RequiredArgsConstructor
 public class PageController {
+
+    private final TeamMemberService teamMemberService;
 
     @GetMapping("/login-page") // 로그인
     public String login(){ return "login";}
@@ -21,7 +26,9 @@ public class PageController {
     public String detailTeam() { return "detailTeamPage"; }
 
     @GetMapping("/joinForm-page") // 참여 폼 작성 페이지
-    public String joinForm(@SessionAttribute(name = "memberId") Long memberId) { return "joinForm"; }
+    public String joinForm(@SessionAttribute(name = "memberId") Long memberId) {
+        return "joinForm";
+    }
 
     @GetMapping("/myTeam-page") // 내 팀 페이지
     public String myTeam() { return "myTeamPage"; }

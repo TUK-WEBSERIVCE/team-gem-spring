@@ -33,8 +33,11 @@ public class TeamMemberController {
     }
 
     @GetMapping("/join/{teamId}")
-    public String joinForm(Model model,@PathVariable Long teamId,@SessionAttribute(name = "memberId") Long memberId){
+    public String joinForm(Model model,@PathVariable Long teamId,@SessionAttribute(name =
+        "memberId") Long memberId,HttpServletRequest request){
+        request.setAttribute("teamId",teamId);
         model.addAttribute("teamId",teamId);
+        teamMemberService.checkDuplication(memberId,teamId);
         return "joinForm";
     }
 

@@ -2,6 +2,7 @@ package com.tuk.teamgem.teammember.service;
 
 import com.tuk.teamgem.comment.domain.Comment;
 import com.tuk.teamgem.comment.service.CommentService;
+import com.tuk.teamgem.exception.DuplicationException;
 import com.tuk.teamgem.member.domain.Member;
 import com.tuk.teamgem.member.service.MemberService;
 import com.tuk.teamgem.team.domain.Team;
@@ -79,5 +80,14 @@ public class TeamMemberService {
         return teamMemberRepository.findApplicationByMember(member).stream()
             .filter(tm -> tm.isNotHost(memberId)).collect(
                 Collectors.toList());
+    }
+
+    public void checkDuplication(Long memberId,Long teamId){
+        Team team = teamService.getTeam(teamId);
+        Member member = memberService.getMember(memberId);
+        boolean duplicationStatus = teamMemberRepository.existsByMemberAndTeam(member, team);
+        if(duplicationStatus){
+            throw new DuplicationException("이미 참여 중 입니다.");
+        }
     }
 }
