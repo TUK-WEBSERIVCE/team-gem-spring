@@ -7,7 +7,12 @@ import com.tuk.teamgem.exception.OutDatedException;
 import com.tuk.teamgem.exception.RegisterException;
 import com.tuk.teamgem.team.domain.Team;
 import com.tuk.teamgem.team.service.TeamService;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @ControllerAdvice
 @RequiredArgsConstructor
@@ -56,15 +62,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(OutDatedException.class)
-    public String outDatedException(OutDatedException ex, Model model,HttpServletRequest request) {
-        int itemsPerPage = 6; // 페이지당 데이터 개수
-        Pageable pageable = PageRequest.of(0, itemsPerPage);
-        Page<Team> teamPage = teamService.getTeams(pageable);
-
-        model.addAttribute("teams", teamPage.getContent());
-        model.addAttribute("currentPage", 1); // 현재 페이지 (1부터 시작)
-        model.addAttribute("totalPages", teamPage.getTotalPages());
-        model.addAttribute("errorMessage",ex.getLocalizedMessage());
-        return "mainPageError";
+    public String outDatedException(OutDatedException ex, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        redirectAttributes.addFlashAttribute("hasError", true); // Flash attribute 설정
+        redirectAttributes.addFlashAttribute("errorMessage", ex.getLocalizedMessage()); // Flash attribute 설정
+        int page = (int) request.getAttribute("page");
+        return "redirect:/?page="+page;
     }
 }

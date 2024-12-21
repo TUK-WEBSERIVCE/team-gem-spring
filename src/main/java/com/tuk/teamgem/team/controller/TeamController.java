@@ -4,6 +4,9 @@ import com.tuk.teamgem.team.domain.Team;
 import com.tuk.teamgem.team.dto.TeamRegisterRequest;
 import com.tuk.teamgem.team.service.TeamService;
 import jakarta.servlet.http.HttpServletRequest;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.util.UriBuilder;
 
 
 @Controller
@@ -36,8 +40,6 @@ public class TeamController {
         int itemsPerPage = 6; // 페이지당 데이터 개수
         Pageable pageable = PageRequest.of(page, itemsPerPage);
         Page<Team> teamPage = teamService.getTeams(pageable);
-        request.setAttribute("page",page);
-
         model.addAttribute("teams", teamPage.getContent());
         model.addAttribute("currentPage", page + 1); // 현재 페이지 (1부터 시작)
         model.addAttribute("totalPages", teamPage.getTotalPages());
@@ -46,11 +48,30 @@ public class TeamController {
 
 
     @GetMapping("/team/{teamId}")
-    public String getTeam(@PathVariable Long teamId, Model model){
+    public String getTeam(@PathVariable Long teamId, Model model,HttpServletRequest request){
+        String referer = request.getHeader("Referer");
+        String query = URI.create(referer).getQuery();
+        Map<String, String> queryParams = parseQueryParams(query);
+        String page = queryParams.get("page");
+        int pageValue = page == null ? 0 : Integer.parseInt(page);
+        request.setAttribute("page",pageValue);
         Team team = teamService.getTeam(teamId);
-        teamService.checkOutDated(team);
         model.addAttribute("team",team);
         return "detailTeamPage";
+    }
+
+    private Map<String, String> parseQueryParams(String query) {
+        Map<String, String> queryParams = new HashMap<>();
+        if (query != null) {
+            String[] pairs = query.split("&");
+            for (String pair : pairs) {
+                String[] keyValue = pair.split("=");
+                if (keyValue.length == 2) {
+                    queryParams.put(keyValue[0], keyValue[1]);
+                }
+            }
+        }
+        return queryParams;
     }
 
     @DeleteMapping("/team/{teamId}")

@@ -291,6 +291,43 @@
         <a href="?page=${totalPages - 1}" aria-label="Last Page">&raquo;</a> <!-- 마지막 페이지 -->
     </c:if>
 </div>
+<!-- 경고 메시지 박스 -->
+<c:if test="${hasError}">
+<div class="alert-box">
+        <p>${errorMessage}</p>
+</div>
+</c:if>
+
+<style>
+  .alert-box {
+    width: 80%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 15px 20px;
+    background-color: #ffdddd; /* 연한 빨간 배경 */
+    color: #d8000c; /* 경고 빨간 글씨 */
+    border: 1px solid #d8000c; /* 경고 빨간 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    font-family: Arial, sans-serif; /* 글꼴 */
+    text-align: center; /* 중앙 정렬 */
+    font-size: 1.2em; /* 적당히 큰 글씨 크기 */
+  }
+
+  .alert-box p {
+    margin: 0; /* p 태그 여백 제거 */
+  }
+
+  .alert-box a {
+    color: #d8000c; /* 빨간 글씨 */
+    text-decoration: underline; /* 밑줄 */
+    font-weight: bold; /* 굵은 글씨 */
+  }
+
+  .alert-box a:hover {
+    text-decoration: none; /* 마우스 오버 시 밑줄 제거 */
+  }
+</style>
 
 <!-- 하단 네비게이션 바 -->
 <nav>
