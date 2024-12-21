@@ -53,7 +53,7 @@ public class TeamMemberService {
         List<TeamMember> teamMembers = teamMemberRepository.findByTeam(team);
         boolean isHost = team.isHost(memberId);
         List<Comment> comments = commentService.findAllByTeam(team);
-        return new MyTeamResponse(teamMembers, isHost, comments);
+        return new MyTeamResponse(teamMembers, isHost, comments, team.getName());
     }
 
     @Transactional

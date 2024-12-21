@@ -10,11 +10,13 @@ public class MyTeamResponse{
     List<TeamMember> teamMembers;
     Boolean isHost;
     List<Comment> comments;
+    String teamName;
 
-    public MyTeamResponse(final List<TeamMember> teamMembers, final boolean isHost, final List<Comment> comments) {
+    public MyTeamResponse(final List<TeamMember> teamMembers, final boolean isHost, final List<Comment> comments,final String teamName) {
         this.teamMembers = teamMembers;
         this.isHost = isHost;
         this.comments = comments;
+        this.teamName = teamName;
     }
 }
 
