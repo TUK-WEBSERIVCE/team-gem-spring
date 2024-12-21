@@ -13,6 +13,7 @@ import com.tuk.teamgem.teammember.dto.MyTeamResponse;
 import com.tuk.teamgem.teammember.dto.TeamJoinRequest;
 import com.tuk.teamgem.teammember.repository.TeamMemberRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +29,7 @@ public class TeamMemberService {
     private final CommentService commentService;
 
     @Transactional
-    public void joinRequest(Long memberId, Long teamId, TeamJoinRequest teamJoinRequest){
+    public void joinRequest(Long memberId, Long teamId, TeamJoinRequest teamJoinRequest) {
         Member member = memberService.getMember(memberId);
         Team team = teamService.getTeam(teamId);
         TeamMember teamMember = TeamMember.builder()
@@ -41,21 +42,21 @@ public class TeamMemberService {
         teamMemberRepository.save(teamMember);
     }
 
-    public List<TeamMember> findMyTeams(Long memberId){
+    public List<TeamMember> findMyTeams(Long memberId) {
         Member member = memberService.getMember(memberId);
-        return teamMemberRepository.findAllByMember(member,ApplicationStatus.APPROVED);
+        return teamMemberRepository.findAllByMember(member, ApplicationStatus.APPROVED);
     }
 
-    public MyTeamResponse findMyTeam(Long teamId, Long memberId){
+    public MyTeamResponse findMyTeam(Long teamId, Long memberId) {
         Team team = teamService.getTeam(teamId);
         List<TeamMember> teamMembers = teamMemberRepository.findByTeam(team);
         boolean isHost = team.isHost(memberId);
         List<Comment> comments = commentService.findAllByTeam(team);
-        return new MyTeamResponse(teamMembers,isHost,comments);
+        return new MyTeamResponse(teamMembers, isHost, comments);
     }
 
     @Transactional
-    public void approve(ApproveRequest request){
+    public void approve(ApproveRequest request) {
         Team team = teamService.getTeam(request.getTeamId());
         Member member = memberService.getMember(request.getMemberId());
         team.participateOne();
@@ -65,7 +66,7 @@ public class TeamMemberService {
     }
 
     @Transactional
-    public void reject(ApproveRequest request){
+    public void reject(ApproveRequest request) {
         Team team = teamService.getTeam(request.getTeamId());
         Member member = memberService.getMember(request.getMemberId());
         TeamMember teamMember = teamMemberRepository.findByMemberAndTeam(member, team)
@@ -73,8 +74,10 @@ public class TeamMemberService {
         teamMember.reject();
     }
 
-    public List<TeamMember> findApplication(Long memberId){
+    public List<TeamMember> findApplication(Long memberId) {
         Member member = memberService.getMember(memberId);
-        return teamMemberRepository.findApplicationByMember(member);
+        return teamMemberRepository.findApplicationByMember(member).stream()
+            .filter(tm -> tm.isNotHost(memberId)).collect(
+                Collectors.toList());
     }
 }

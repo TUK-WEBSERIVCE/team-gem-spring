@@ -53,4 +53,6 @@ public class TeamMember {
     public void reject(){
         applicationStatus = ApplicationStatus.REJECTED;
     }
+
+    public boolean isNotHost(Long memberId){return !team.isHost(memberId);}
 }

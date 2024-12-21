@@ -141,14 +141,14 @@
         <c:forEach var="application" items="${applications}">
             <div class="apply-list">
                 <div class="apply-item">
-                    <span>${application.team.name}</span>
+                    <span>팀이름 : ${application.team.name}</span>
                     <c:if test="${application.applicationStatus == 'PENDING'}">
                         <div class="waitingStatus">대기</div>
                     </c:if>
-                    <c:if test="${application.applicationStatus == 'APPROVED'}">
+                    <c:if test="팀이름 : ${application.applicationStatus == 'APPROVED'}">
                         <div class="okStatus">승인</div>
                     </c:if>
-                    <c:if test="${application.applicationStatus == 'REJECTED'}">
+                    <c:if test="팀이름 : ${application.applicationStatus == 'REJECTED'}">
                         <div class="noStatus">거절</div>
                     </c:if>
                 </div>
