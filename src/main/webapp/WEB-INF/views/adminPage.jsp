@@ -152,34 +152,38 @@
     </div>
 </header>
 <div class="container">
+    <div class="main-title">관리 목록</div>
+    <hr>
+    <div class="small-container">
     <!-- 회원 목록 -->
-    <div class="list-container">
-        <div class="list-title">회원 목록</div>
-        <ul>
-            <c:forEach var="member" items="${res.members}">
-                <li>${member.id}&nbsp;&nbsp;${member.nickname}
-                    <form action="/member/${member.id}" method="post">
-                        <input type="hidden" name="_method" value="delete">
-                        <button class="delete-button" type="submit">X</button>
-                    </form>
-                </li>
-            </c:forEach>
-        </ul>
-    </div>
+        <div class="list-container">
+            <div class="list-title">회원 목록</div>
+            <ul>
+                <c:forEach var="member" items="${res.members}">
+                    <li>${member.id}&nbsp;&nbsp;${member.nickname}
+                        <form action="/member/${member.id}" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <button class="delete-button" type="submit">X</button>
+                        </form>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
 
-    <!-- 팀 목록 -->
-    <div class="list-container">
-        <div class="list-title">팀 목록</div>
-        <ul>
-            <c:forEach var="team" items="${res.teams}">
-                <li>${team.id}&nbsp;&nbsp;${team.name}
-                    <form action="/team/${team.id}" method="post">
-                        <input type="hidden" name="_method" value="delete">
-                        <button class="delete-button" type="submit">X</button>
-                    </form>
-                </li>
-            </c:forEach>
-        </ul>
+        <!-- 팀 목록 -->
+        <div class="list-container">
+            <div class="list-title">팀 목록</div>
+            <ul>
+                <c:forEach var="team" items="${res.teams}">
+                    <li>${team.id}&nbsp;&nbsp;${team.name}
+                        <form action="/team/${team.id}" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <button class="delete-button" type="submit">X</button>
+                        </form>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
     </div>
 </div>
 
