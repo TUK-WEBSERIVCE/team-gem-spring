@@ -211,7 +211,7 @@
 </header>
 
 <div class="container">
-    <div class="main-title">프로젝트 이름</div>
+    <div class="main-title">${myTeam.teamName}</div>
     <hr>
 
     <c:if test="${myTeam.isHost}">
