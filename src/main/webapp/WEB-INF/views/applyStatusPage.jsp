@@ -145,10 +145,10 @@
                     <c:if test="${application.applicationStatus == 'PENDING'}">
                         <div class="waitingStatus">대기</div>
                     </c:if>
-                    <c:if test="팀이름 : ${application.applicationStatus == 'APPROVED'}">
+                    <c:if test="${application.applicationStatus == 'APPROVED'}">
                         <div class="okStatus">승인</div>
                     </c:if>
-                    <c:if test="팀이름 : ${application.applicationStatus == 'REJECTED'}">
+                    <c:if test="${application.applicationStatus == 'REJECTED'}">
                         <div class="noStatus">거절</div>
                     </c:if>
                 </div>
