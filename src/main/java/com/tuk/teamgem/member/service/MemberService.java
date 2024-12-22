@@ -1,5 +1,6 @@
 package com.tuk.teamgem.member.service;
 
+import com.tuk.teamgem.comment.repository.CommentRepository;
 import com.tuk.teamgem.exception.AdminAuthenticationFailedException;
 import com.tuk.teamgem.exception.LoginException;
 import com.tuk.teamgem.exception.RegisterException;
@@ -9,16 +10,22 @@ import com.tuk.teamgem.member.dto.LoginResponse;
 import com.tuk.teamgem.member.dto.MemberRegisterResponse;
 import com.tuk.teamgem.member.dto.RegisterRequest;
 import com.tuk.teamgem.member.repository.MemberRepository;
+import com.tuk.teamgem.team.repository.TeamRepository;
+import com.tuk.teamgem.teammember.repository.TeamMemberRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final CommentRepository commentRepository;
+    private final TeamMemberRepository teamMemberRepository;
+    private final TeamRepository teamRepository;
 
     public MemberRegisterResponse register(RegisterRequest request){
         duplicationLoginId(request.loginId());
@@ -61,7 +68,11 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    @Transactional
     public void deleteMember(Long memberId){
+        commentRepository.deleteAllMemberId(memberId);
+        teamMemberRepository.deleteAllByMemberId(memberId);
         memberRepository.deleteById(memberId);
+        teamRepository.deleteByMember(memberId);
     }
 }

@@ -17,4 +17,8 @@ public interface CommentRepository extends JpaRepository<Comment,Long> {
     @Modifying
     @Query("delete from Comment c where c.team.id = :teamId")
     void deleteAllTeamId(Long teamId);
+
+    @Modifying
+    @Query("delete from Comment c where c.member.id = :memberId")
+    void deleteAllMemberId(Long memberId);
 }

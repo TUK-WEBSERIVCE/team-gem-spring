@@ -28,5 +28,9 @@ public interface TeamMemberRepository extends JpaRepository<TeamMember,Long> {
     @Query("delete from TeamMember tm where tm.team.id = :teamId")
     void deleteAllByTeamId(Long teamId);
 
+    @Modifying
+    @Query("delete from TeamMember tm where tm.member.id = :memberId")
+    void deleteAllByMemberId(Long memberId);
+
     boolean existsByMemberAndTeam(Member member, Team team);
 }
